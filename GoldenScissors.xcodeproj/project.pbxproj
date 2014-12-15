@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23EFC5581A3F40F1003667D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC5571A3F40F1003667D0 /* Foundation.framework */; };
+		23EFC55A1A3F40F1003667D0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC5591A3F40F1003667D0 /* CoreGraphics.framework */; };
+		23EFC55C1A3F40F1003667D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC55B1A3F40F1003667D0 /* UIKit.framework */; };
+		23EFC5621A3F40F1003667D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23EFC5601A3F40F1003667D0 /* InfoPlist.strings */; };
+		23EFC5641A3F40F1003667D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EFC5631A3F40F1003667D0 /* main.m */; };
+		23EFC5681A3F40F1003667D0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EFC5671A3F40F1003667D0 /* AppDelegate.m */; };
+		23EFC56A1A3F40F1003667D0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23EFC5691A3F40F1003667D0 /* Images.xcassets */; };
+		23EFC5711A3F40F1003667D0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC5701A3F40F1003667D0 /* XCTest.framework */; };
+		23EFC5721A3F40F1003667D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC5571A3F40F1003667D0 /* Foundation.framework */; };
+		23EFC5731A3F40F1003667D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC55B1A3F40F1003667D0 /* UIKit.framework */; };
+		23EFC57B1A3F40F1003667D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23EFC5791A3F40F1003667D0 /* InfoPlist.strings */; };
+		23EFC57D1A3F40F1003667D0 /* GoldenScissorsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EFC57C1A3F40F1003667D0 /* GoldenScissorsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		23EFC5741A3F40F1003667D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23EFC54C1A3F40F1003667D0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23EFC5531A3F40F1003667D0;
+			remoteInfo = GoldenScissors;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		23EFC5541A3F40F1003667D0 /* GoldenScissors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenScissors.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23EFC5571A3F40F1003667D0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		23EFC5591A3F40F1003667D0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		23EFC55B1A3F40F1003667D0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		23EFC55F1A3F40F1003667D0 /* GoldenScissors-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoldenScissors-Info.plist"; sourceTree = "<group>"; };
+		23EFC5611A3F40F1003667D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		23EFC5631A3F40F1003667D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		23EFC5651A3F40F1003667D0 /* GoldenScissors-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GoldenScissors-Prefix.pch"; sourceTree = "<group>"; };
+		23EFC5661A3F40F1003667D0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		23EFC5671A3F40F1003667D0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		23EFC5691A3F40F1003667D0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		23EFC56F1A3F40F1003667D0 /* GoldenScissorsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoldenScissorsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23EFC5701A3F40F1003667D0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		23EFC5781A3F40F1003667D0 /* GoldenScissorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoldenScissorsTests-Info.plist"; sourceTree = "<group>"; };
+		23EFC57A1A3F40F1003667D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		23EFC57C1A3F40F1003667D0 /* GoldenScissorsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoldenScissorsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23EFC5511A3F40F1003667D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23EFC55A1A3F40F1003667D0 /* CoreGraphics.framework in Frameworks */,
+				23EFC55C1A3F40F1003667D0 /* UIKit.framework in Frameworks */,
+				23EFC5581A3F40F1003667D0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23EFC56C1A3F40F1003667D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23EFC5711A3F40F1003667D0 /* XCTest.framework in Frameworks */,
+				23EFC5731A3F40F1003667D0 /* UIKit.framework in Frameworks */,
+				23EFC5721A3F40F1003667D0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23EFC54B1A3F40F1003667D0 = {
+			isa = PBXGroup;
+			children = (
+				23EFC55D1A3F40F1003667D0 /* GoldenScissors */,
+				23EFC5761A3F40F1003667D0 /* GoldenScissorsTests */,
+				23EFC5561A3F40F1003667D0 /* Frameworks */,
+				23EFC5551A3F40F1003667D0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		23EFC5551A3F40F1003667D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23EFC5541A3F40F1003667D0 /* GoldenScissors.app */,
+				23EFC56F1A3F40F1003667D0 /* GoldenScissorsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23EFC5561A3F40F1003667D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				23EFC5571A3F40F1003667D0 /* Foundation.framework */,
+				23EFC5591A3F40F1003667D0 /* CoreGraphics.framework */,
+				23EFC55B1A3F40F1003667D0 /* UIKit.framework */,
+				23EFC5701A3F40F1003667D0 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		23EFC55D1A3F40F1003667D0 /* GoldenScissors */ = {
+			isa = PBXGroup;
+			children = (
+				23EFC5661A3F40F1003667D0 /* AppDelegate.h */,
+				23EFC5671A3F40F1003667D0 /* AppDelegate.m */,
+				23EFC5691A3F40F1003667D0 /* Images.xcassets */,
+				23EFC55E1A3F40F1003667D0 /* Supporting Files */,
+			);
+			path = GoldenScissors;
+			sourceTree = "<group>";
+		};
+		23EFC55E1A3F40F1003667D0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				23EFC55F1A3F40F1003667D0 /* GoldenScissors-Info.plist */,
+				23EFC5601A3F40F1003667D0 /* InfoPlist.strings */,
+				23EFC5631A3F40F1003667D0 /* main.m */,
+				23EFC5651A3F40F1003667D0 /* GoldenScissors-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		23EFC5761A3F40F1003667D0 /* GoldenScissorsTests */ = {
+			isa = PBXGroup;
+			children = (
+				23EFC57C1A3F40F1003667D0 /* GoldenScissorsTests.m */,
+				23EFC5771A3F40F1003667D0 /* Supporting Files */,
+			);
+			path = GoldenScissorsTests;
+			sourceTree = "<group>";
+		};
+		23EFC5771A3F40F1003667D0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				23EFC5781A3F40F1003667D0 /* GoldenScissorsTests-Info.plist */,
+				23EFC5791A3F40F1003667D0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		23EFC5531A3F40F1003667D0 /* GoldenScissors */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23EFC5801A3F40F1003667D0 /* Build configuration list for PBXNativeTarget "GoldenScissors" */;
+			buildPhases = (
+				23EFC5501A3F40F1003667D0 /* Sources */,
+				23EFC5511A3F40F1003667D0 /* Frameworks */,
+				23EFC5521A3F40F1003667D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoldenScissors;
+			productName = GoldenScissors;
+			productReference = 23EFC5541A3F40F1003667D0 /* GoldenScissors.app */;
+			productType = "com.apple.product-type.application";
+		};
+		23EFC56E1A3F40F1003667D0 /* GoldenScissorsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23EFC5831A3F40F1003667D0 /* Build configuration list for PBXNativeTarget "GoldenScissorsTests" */;
+			buildPhases = (
+				23EFC56B1A3F40F1003667D0 /* Sources */,
+				23EFC56C1A3F40F1003667D0 /* Frameworks */,
+				23EFC56D1A3F40F1003667D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23EFC5751A3F40F1003667D0 /* PBXTargetDependency */,
+			);
+			name = GoldenScissorsTests;
+			productName = GoldenScissorsTests;
+			productReference = 23EFC56F1A3F40F1003667D0 /* GoldenScissorsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23EFC54C1A3F40F1003667D0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = EventHorizon;
+				TargetAttributes = {
+					23EFC56E1A3F40F1003667D0 = {
+						TestTargetID = 23EFC5531A3F40F1003667D0;
+					};
+				};
+			};
+			buildConfigurationList = 23EFC54F1A3F40F1003667D0 /* Build configuration list for PBXProject "GoldenScissors" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 23EFC54B1A3F40F1003667D0;
+			productRefGroup = 23EFC5551A3F40F1003667D0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23EFC5531A3F40F1003667D0 /* GoldenScissors */,
+				23EFC56E1A3F40F1003667D0 /* GoldenScissorsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		23EFC5521A3F40F1003667D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23EFC5621A3F40F1003667D0 /* InfoPlist.strings in Resources */,
+				23EFC56A1A3F40F1003667D0 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23EFC56D1A3F40F1003667D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23EFC57B1A3F40F1003667D0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23EFC5501A3F40F1003667D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23EFC5681A3F40F1003667D0 /* AppDelegate.m in Sources */,
+				23EFC5641A3F40F1003667D0 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23EFC56B1A3F40F1003667D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23EFC57D1A3F40F1003667D0 /* GoldenScissorsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		23EFC5751A3F40F1003667D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23EFC5531A3F40F1003667D0 /* GoldenScissors */;
+			targetProxy = 23EFC5741A3F40F1003667D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		23EFC5601A3F40F1003667D0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23EFC5611A3F40F1003667D0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		23EFC5791A3F40F1003667D0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23EFC57A1A3F40F1003667D0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		23EFC57E1A3F40F1003667D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		23EFC57F1A3F40F1003667D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		23EFC5811A3F40F1003667D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
+				INFOPLIST_FILE = "GoldenScissors/GoldenScissors-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		23EFC5821A3F40F1003667D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
+				INFOPLIST_FILE = "GoldenScissors/GoldenScissors-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		23EFC5841A3F40F1003667D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GoldenScissors.app/GoldenScissors";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GoldenScissorsTests/GoldenScissorsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		23EFC5851A3F40F1003667D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GoldenScissors.app/GoldenScissors";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
+				INFOPLIST_FILE = "GoldenScissorsTests/GoldenScissorsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		23EFC54F1A3F40F1003667D0 /* Build configuration list for PBXProject "GoldenScissors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23EFC57E1A3F40F1003667D0 /* Debug */,
+				23EFC57F1A3F40F1003667D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23EFC5801A3F40F1003667D0 /* Build configuration list for PBXNativeTarget "GoldenScissors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23EFC5811A3F40F1003667D0 /* Debug */,
+				23EFC5821A3F40F1003667D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		23EFC5831A3F40F1003667D0 /* Build configuration list for PBXNativeTarget "GoldenScissorsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23EFC5841A3F40F1003667D0 /* Debug */,
+				23EFC5851A3F40F1003667D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 23EFC54C1A3F40F1003667D0 /* Project object */;
+}
