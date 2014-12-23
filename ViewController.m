@@ -15,14 +15,15 @@
 @end
 
 
-
 @implementation ViewController
-
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self->codeField.delegate = self;
+    self->nameInput.delegate = self;
     
     //open/create database
     int result = sqlite3_open([[self filePath] UTF8String],&db);
@@ -30,59 +31,43 @@
     if(result != SQLITE_OK)
         NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
     
-    //else printf("database NOT opened or created in \n");
-    
     //create a table for this database
     [self createTableNamed: @"LoyaltyCounter" withField1: @"code" withField2: @"customerName" withField3: 1];
     
-    
-    for(int i=0;i<5;++i){
-    //insert some records
-        
-        NSString *code = [[NSString alloc] initWithFormat:@"000%d",i];
-        NSString *userName = [[NSString alloc] initWithFormat:@"user_%d",i];
+}
 
-        
-        [self insertRecordIntoTableNamed: @"LoyaltyCounter" withField1:@"code" field1Value: code
-                           andField2:@"customerName" field2Value: userName
-                           andField3:1 field3Value:i];
+
+-(IBAction)namePressed:(UIButton *)sender
+{
+    NSString *name = (NSString *)(sender.currentTitle);
     
-        //Title.font= [UIFont boldSystemFontOfSize:16];
-        course_1.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-        userCode = [[UITextField alloc] initWithFrame:CGRectMake(10, 200, 300, 40)];
-        
     
-    }
-        
-    // Do any additional setup after loading the view from its nib.
+    NSString *nameField = nameInput.text;
+    NSString *codeName = codeField.text;
+    
+ 
+    UIAlertView *alertMsg=nil;
+    
+    
+    [self insertRecordIntoTableNamed: @"LoyaltyCounter" withField1:@"code" field1Value:codeName
+                           andField2:@"customerName" field2Value: nameField
+                           andField3:1 field3Value:0];
+    
+    
+    /*
+    alertMsg = [[UIAlertView alloc] initWithTitle:full_course_name
+                
+                                          message: extraStuff_14
+                                         delegate:nil cancelButtonTitle:@"OK I get it ! :)"
+                                otherButtonTitles:nil];
+    */
+    
+    [alertMsg show];
 }
 
 
 
 /***   DATABASE TEST  ***/
-
-/*
--(NSString *) filePath;
-{
-    
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    NSString *dbPath = [[[NSBundle mainBundle] resourcePath ]stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
-    
-    BOOL success = [fileMgr fileExistsAtPath:dbPath];
-    
-    
-    NSLog(@"dbPath = %@",dbPath);
-    
-    if(success)
-        return dbPath;
-    
-    //return a nil string as error
-    dbPath=nil;
-    
-    return dbPath;
-}
- */
-
 
 -(NSString *) filePath;
 {
@@ -91,7 +76,7 @@
     NSString *documentsDir = [paths lastObject];
     
     //print check
-    NSLog(@"dbPath = %@",paths);
+    //NSLog(@"dbPath = %@",paths);
     
     return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
 }
@@ -153,6 +138,10 @@
 }
 
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 
 

@@ -9,12 +9,22 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController  <UITextFieldDelegate>
 {
+    //IBOutlet UILabel *Title;
+    
+    
     IBOutlet UIButton *course_1;
     IBOutlet UILabel *lable_text;
-
-    int count;    
-    IBOutlet UITextField *userCode;
+    IBOutlet UITextField *codeField;
+    IBOutlet UILabel *userName;
+    IBOutlet UITextField *nameInput;
+    
+    
+    
+     int count;
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField;
+
 @end
