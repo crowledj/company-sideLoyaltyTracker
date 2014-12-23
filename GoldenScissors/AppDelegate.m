@@ -7,13 +7,28 @@
 //
 
 #import "AppDelegate.h"
+#import "TableViewController.h"
 
 @implementation AppDelegate
+@synthesize navController,vController;
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    
+    
+    vController = [[TableViewController alloc] initWithNibName:@"TableViewController" bundle:nil];
+    navController = [[UINavigationController alloc] initWithRootViewController:vController];
+    
+    self.window.rootViewController = navController;
+    
+    
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

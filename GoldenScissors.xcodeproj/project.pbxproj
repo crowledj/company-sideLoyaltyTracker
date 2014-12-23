@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2349E0BB1A47919B00F33631 /* secondView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2349E0B91A47919B00F33631 /* secondView.m */; };
+		2349E0BC1A47919B00F33631 /* secondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2349E0BA1A47919B00F33631 /* secondView.xib */; };
+		23A58B6D1A48CE43002567FC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A58B6C1A48CE43002567FC /* libsqlite3.0.dylib */; };
+		23C03E3A1A3F9B3B00A54855 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C03E381A3F9B3B00A54855 /* ViewController.m */; };
+		23C03E3B1A3F9B3B00A54855 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23C03E391A3F9B3B00A54855 /* ViewController.xib */; };
 		23EFC5581A3F40F1003667D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC5571A3F40F1003667D0 /* Foundation.framework */; };
 		23EFC55A1A3F40F1003667D0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC5591A3F40F1003667D0 /* CoreGraphics.framework */; };
 		23EFC55C1A3F40F1003667D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC55B1A3F40F1003667D0 /* UIKit.framework */; };
@@ -19,6 +24,8 @@
 		23EFC5731A3F40F1003667D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23EFC55B1A3F40F1003667D0 /* UIKit.framework */; };
 		23EFC57B1A3F40F1003667D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23EFC5791A3F40F1003667D0 /* InfoPlist.strings */; };
 		23EFC57D1A3F40F1003667D0 /* GoldenScissorsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EFC57C1A3F40F1003667D0 /* GoldenScissorsTests.m */; };
+		23EFC5891A3F4110003667D0 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EFC5871A3F4110003667D0 /* TableViewController.m */; };
+		23EFC58A1A3F4110003667D0 /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23EFC5881A3F4110003667D0 /* TableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2349E0B81A47919B00F33631 /* secondView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = secondView.h; path = ../secondView.h; sourceTree = "<group>"; };
+		2349E0B91A47919B00F33631 /* secondView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = secondView.m; path = ../secondView.m; sourceTree = "<group>"; };
+		2349E0BA1A47919B00F33631 /* secondView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = secondView.xib; path = ../secondView.xib; sourceTree = "<group>"; };
+		23A58B681A48BF87002567FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		23A58B6C1A48CE43002567FC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		23C03E371A3F9B3B00A54855 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
+		23C03E381A3F9B3B00A54855 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
+		23C03E391A3F9B3B00A54855 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ../ViewController.xib; sourceTree = "<group>"; };
 		23EFC5541A3F40F1003667D0 /* GoldenScissors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenScissors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23EFC5571A3F40F1003667D0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		23EFC5591A3F40F1003667D0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +63,9 @@
 		23EFC5781A3F40F1003667D0 /* GoldenScissorsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoldenScissorsTests-Info.plist"; sourceTree = "<group>"; };
 		23EFC57A1A3F40F1003667D0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23EFC57C1A3F40F1003667D0 /* GoldenScissorsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoldenScissorsTests.m; sourceTree = "<group>"; };
+		23EFC5861A3F4110003667D0 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
+		23EFC5871A3F4110003667D0 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
+		23EFC5881A3F4110003667D0 /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableViewController.xib; path = ../TableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23A58B6D1A48CE43002567FC /* libsqlite3.0.dylib in Frameworks */,
 				23EFC55A1A3F40F1003667D0 /* CoreGraphics.framework in Frameworks */,
 				23EFC55C1A3F40F1003667D0 /* UIKit.framework in Frameworks */,
 				23EFC5581A3F40F1003667D0 /* Foundation.framework in Frameworks */,
@@ -96,6 +115,8 @@
 		23EFC5561A3F40F1003667D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23A58B6C1A48CE43002567FC /* libsqlite3.0.dylib */,
+				23A58B681A48BF87002567FC /* libsqlite3.dylib */,
 				23EFC5571A3F40F1003667D0 /* Foundation.framework */,
 				23EFC5591A3F40F1003667D0 /* CoreGraphics.framework */,
 				23EFC55B1A3F40F1003667D0 /* UIKit.framework */,
@@ -109,6 +130,15 @@
 			children = (
 				23EFC5661A3F40F1003667D0 /* AppDelegate.h */,
 				23EFC5671A3F40F1003667D0 /* AppDelegate.m */,
+				23EFC5861A3F4110003667D0 /* TableViewController.h */,
+				23EFC5871A3F4110003667D0 /* TableViewController.m */,
+				23EFC5881A3F4110003667D0 /* TableViewController.xib */,
+				23C03E371A3F9B3B00A54855 /* ViewController.h */,
+				23C03E381A3F9B3B00A54855 /* ViewController.m */,
+				23C03E391A3F9B3B00A54855 /* ViewController.xib */,
+				2349E0B81A47919B00F33631 /* secondView.h */,
+				2349E0B91A47919B00F33631 /* secondView.m */,
+				2349E0BA1A47919B00F33631 /* secondView.xib */,
 				23EFC5691A3F40F1003667D0 /* Images.xcassets */,
 				23EFC55E1A3F40F1003667D0 /* Supporting Files */,
 			);
@@ -219,7 +249,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23EFC58A1A3F4110003667D0 /* TableViewController.xib in Resources */,
+				2349E0BC1A47919B00F33631 /* secondView.xib in Resources */,
 				23EFC5621A3F40F1003667D0 /* InfoPlist.strings in Resources */,
+				23C03E3B1A3F9B3B00A54855 /* ViewController.xib in Resources */,
 				23EFC56A1A3F40F1003667D0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				23EFC5681A3F40F1003667D0 /* AppDelegate.m in Sources */,
+				23EFC5891A3F4110003667D0 /* TableViewController.m in Sources */,
+				23C03E3A1A3F9B3B00A54855 /* ViewController.m in Sources */,
+				2349E0BB1A47919B00F33631 /* secondView.m in Sources */,
 				23EFC5641A3F40F1003667D0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +396,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
 				INFOPLIST_FILE = "GoldenScissors/GoldenScissors-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GoldenScissors",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -373,6 +413,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
 				INFOPLIST_FILE = "GoldenScissors/GoldenScissors-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GoldenScissors",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -437,6 +481,7 @@
 				23EFC5821A3F40F1003667D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		23EFC5831A3F40F1003667D0 /* Build configuration list for PBXNativeTarget "GoldenScissorsTests" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +490,7 @@
 				23EFC5851A3F40F1003667D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
