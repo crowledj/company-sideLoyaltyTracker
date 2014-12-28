@@ -21,16 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    arrItems = [[NSArray alloc] initWithObjects:@"Add new persons card",@"Remove a card",@"Search a card", nil];
     
-    arrItems = [[NSArray alloc] initWithObjects:@"Item 1",@"Item 2",@"Item3", nil];
-    
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,17 +64,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    
     
     if(indexPath.row == 0)
     {
-        //BIDSecondLevelViewController *controller = self.controller[indexPath.row];
-        //[self.navigationController pushViewController:controller animated:YES];
-        
-        printf("in  indexPath.row == 0 loop !  ");
-        
         ViewController *detailViewController_1 = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
         [self.navigationController pushViewController:detailViewController_1 animated:YES];
     
@@ -91,86 +75,14 @@
     
     else
     {
-        //BIDFilterPickerViewController  *controller = self.controller[indexPath.row];
-        //[self.navigationController pushViewController:controller animated:YES];
-        
-        
-        printf("in  indexPath.row not eqaul 0 loop !  ");
-        
         secondView *detailViewController_2 = [[secondView alloc] initWithNibName:@"secondView" bundle:nil];
-        
-        printf("instantiated and now pushing the view on  ");
-        
         [self.navigationController pushViewController:detailViewController_2 animated:YES];
-        
-        printf("PUSHED the view on  ");
-        
     }
     
     
-    
-    //ViewController *detailViewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    
+
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-*/
 
 @end

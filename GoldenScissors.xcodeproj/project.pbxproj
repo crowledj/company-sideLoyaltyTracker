@@ -96,7 +96,7 @@
 		23EFC54B1A3F40F1003667D0 = {
 			isa = PBXGroup;
 			children = (
-				23EFC55D1A3F40F1003667D0 /* GoldenScissors */,
+				23EFC55D1A3F40F1003667D0 /* GoldenBastard */,
 				23EFC5761A3F40F1003667D0 /* GoldenScissorsTests */,
 				23EFC5561A3F40F1003667D0 /* Frameworks */,
 				23EFC5551A3F40F1003667D0 /* Products */,
@@ -125,7 +125,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		23EFC55D1A3F40F1003667D0 /* GoldenScissors */ = {
+		23EFC55D1A3F40F1003667D0 /* GoldenBastard */ = {
 			isa = PBXGroup;
 			children = (
 				23EFC5661A3F40F1003667D0 /* AppDelegate.h */,
@@ -142,6 +142,7 @@
 				23EFC5691A3F40F1003667D0 /* Images.xcassets */,
 				23EFC55E1A3F40F1003667D0 /* Supporting Files */,
 			);
+			name = GoldenBastard;
 			path = GoldenScissors;
 			sourceTree = "<group>";
 		};

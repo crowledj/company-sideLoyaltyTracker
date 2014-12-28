@@ -13,24 +13,30 @@
 @synthesize navController,vController;
 
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
-    
     vController = [[TableViewController alloc] initWithNibName:@"TableViewController" bundle:nil];
     navController = [[UINavigationController alloc] initWithRootViewController:vController];
     
     self.window.rootViewController = navController;
-    
-    
-    
-    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    //open/create database
+    int result = sqlite3_open([[self filePath] UTF8String],&db);
+    
+    if(result != SQLITE_OK)
+        NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
+    
+    NSLog(@"creating table");
+    //create a table for this database
+    [self createTableNamed: @"CustomerCard" withField1: @"code" withField2: @"customerName" withField3: @"num"];
+    NSLog(@"DONE creating table");
+     
     return YES;
 }
 
@@ -60,5 +66,50 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
+/***   DATABASE TEST  ***/
+
+
+-(NSString *) filePath;
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);    
+    NSString *documentsDir = [paths lastObject];
+    
+  
+    return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
+}
+
+
+
+//function to open the database
+-(void)openDB
+{
+    //create first database
+    if(sqlite3_open( [[self filePath] UTF8String], &db) != SQLITE_OK )
+    {
+        sqlite3_close(db);
+        NSAssert(0,@"Database one failed to open.");
+    }
+}
+
+
+//create a Loyalty card customer table in the database
+-(void) createTableNamed:(NSString *) tableName withField1:(NSString *) field1 withField2:(NSString *) field2 withField3:(NSString *) field3 {
+    
+    char *err;
+    NSString *sql  = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' TEXT PRIMARY KEY, '%@' TEXT, '%@' INT);",tableName,field1,field2,field3];
+    
+    if(sqlite3_exec(db,[sql UTF8String],NULL,NULL,&err) != SQLITE_OK) {
+        
+        sqlite3_close(db);
+        NSAssert(0,@"Table failed to create -- error msg = %s",err);
+        
+    }
+    
+}
+
+
 
 @end

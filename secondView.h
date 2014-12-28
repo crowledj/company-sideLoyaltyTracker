@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
-@interface secondView : UIViewController
+@interface secondView : UIViewController <UITextFieldDelegate>
 {
-   //IBOutlet UILabel *text_label;
-    IBOutlet UIButton *card_button;
+    IBOutlet UIButton *totUp_button;
+    IBOutlet UITextField *codeBox;
+    IBOutlet UILabel *totUp_label;
+    
+    int count;
+    NSString *tableName;
 }
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField;
+
 @end

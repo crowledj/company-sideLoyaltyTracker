@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
 @class TableViewController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+        sqlite3 *db;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
