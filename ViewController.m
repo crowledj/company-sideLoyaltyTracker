@@ -66,7 +66,7 @@
 
     [self insertRecordIntoTableNamed: @"CustomerCard" withField1:@"code" field1Value:codeName
                            andField2:@"customerName" field2Value: nameField
-                           andField3:@"num" field3Value:5];
+                           andField3:@"num" field3Value:0];
     
     
     NSLog(@"DONE nserting into table");

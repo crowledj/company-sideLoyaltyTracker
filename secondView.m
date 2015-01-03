@@ -54,14 +54,174 @@
     
     UIAlertView *alertMsg=nil;
     
-    sqlite3_stmt *statement;
+    sqlite3_stmt /**statement,*/*statement_1;
     
+    
+    [self totUpRecordInTableNamed:tableName
+         withSearchField:searchField
+         /*andTotUpField: totUpField*/];
+    
+ 
+    
+    //***************************     TEST    **************************************
+    
+    NSString *insQL = [NSString stringWithFormat:
+                           @"select num from CustomerCard where code= \"%@\" ",searchField];
+    
+    const char *stmt = [insQL UTF8String];
+    
+    
+    NSLog(@"pure sql result on counter select = %@",insQL);
+    
+
+    if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
+        
+        
+        while(sqlite3_step(statement_1) == SQLITE_ROW) {
+            NSLog(@"Read rows OK");
+           // NSString *dbMessageID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
+           // NSString *dbMessageText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
+            //int dbMessageDate = (int )sqlite3_column_int(statement_1, 2);
+            
+            count= (int )sqlite3_column_int(statement_1, 0);
+            
+            //NSLog(@"column values are -- dbMessageID = %@ --  dbCustomerName = %@ -- dbCounter = %d",dbMessageID,dbMessageText,/*dbMessageDate*/count);
+            
+            NSLog(@"column value is  dbCounter = %d",count);
+            
+            
+        }
+    }
+    
+    else NSLog(@"Something fucked up here  :( ");
+    
+    
+    sqlite3_finalize(statement_1);
+ 
+    //***************************   END  TEST    ***************************************
+
+    NSString *countString=nil;
+    
+    NSLog(@"count = %d ",count);
+    
+    
+    if(count == 0){
+        countString= @"0";
+        [self alert:alertMsg PopupWith:countString];
+    }
+    
+    else if(count == 1){
+        countString= @"1";
+        [self alert:alertMsg PopupWith:countString];
+    }
+    
+    else if(count == 2){
+        countString= @"2";
+        [self alert:alertMsg PopupWith:countString];
+    }
+    
+    else if(count == 3){
+        countString= @"3";
+        [self alert:alertMsg PopupWith:countString];
+    }
+    
+    else if(count == 4){
+        countString= @"4";
+        [self alert:alertMsg PopupWith:countString];
+    }
+    
+    else if(count == 5){
+        countString= @"5";
+        [self alert:alertMsg PopupWith:countString];
+        //reset count.
+        count=0;
+        [self resetRecordInTableNamed:tableName
+                      withSearchField:searchField
+         /*andTotUpField: totUpField*/];
+    }
+}
+
+
+-(void) alert:(UIAlertView *) alert PopupWith: (NSString *) counter
+{
+    
+    NSString *extraStuff_2 = @"\n Customer with card code : ";
+    NSString *extraStuff_3=nil;
+    extraStuff_3 = [extraStuff_2 stringByAppendingString:counter];
+    
+    
+    //display message for customer count no.
+    
+    if(count < 5 )
+        
+        alert = [[UIAlertView alloc] initWithTitle:@"Customer card incremented"
+                                              message: extraStuff_3
+                                             delegate:nil cancelButtonTitle:@"OK I get it ! :)"
+                                    otherButtonTitles:nil];
+    
+    else
+        alert = [[UIAlertView alloc] initWithTitle:@"Customer card incremented"
+                                              message: extraStuff_3
+                                             delegate:nil cancelButtonTitle:@"REWARD THE CUSTOMER :) --\n RESETTING REWARD COUNT TO ZERO "
+                                    otherButtonTitles:nil];
+    
+    [alert show];
+    
+}
+
+
+
+
+ //function to insert rows of customer data into this table
+ -(void) totUpRecordInTableNamed: (NSString *) tableName
+ withSearchField: (NSString *) searchField
+ /*andTotUpField: (int) totUpField*/
+ {
+     
+     sqlite3_stmt *statement,*statement_1;
+     
+     NSString *insertSQL = [NSString stringWithFormat:
+                            @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,/*self->*/tableName,
+                            searchField];
+     
+     
+     NSLog(@"insertSQL = %@",insertSQL);
+     
+     const char *insert_stmt = [insertSQL UTF8String];
+     
+     sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL);
+     
+     
+     if (sqlite3_step(statement) == SQLITE_DONE)
+     {
+         NSLog(@"Contact UPDATED");
+     } else {
+         NSLog(@"Failed to UPDATE contact");
+     }
+     
+     sqlite3_finalize(statement);
+
+ 
+ }
+
+
+//function to insert rows of customer data into this table
+-(void) resetRecordInTableNamed: (NSString *) tableName
+                withSearchField: (NSString *) searchField
+/*andTotUpField: (int) totUpField*/
+{
+    
+    sqlite3_stmt *statement,*statement_1;
     
     NSString *insertSQL = [NSString stringWithFormat:
-                           @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,self->tableName,
+                           @"UPDATE \"%@\" SET num=0 WHERE code =  \"%@\"" ,tableName,
                            searchField];
     
+    
+    NSLog(@"insertSQL = %@",insertSQL);
+    
     const char *insert_stmt = [insertSQL UTF8String];
+    
     sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL);
     
     
@@ -75,42 +235,7 @@
     sqlite3_finalize(statement);
     
     
-    
-    [alertMsg show];
 }
-
-
-
-/*
- //function to insert rows of customer data into this table
- -(void) totUpRecordInTableNamed: (NSString *) tableName
- withSearchField: (NSString *) searchField
- andTotUpField: (int) totUpField
- {
- 
- 
- //NSString *sqlStr = [NSString stringWithFormat: @"INSERT OR REPLACE INTO '%@' ('%@', '%@','%d') VALUES (?,?,?)",
- //                    tableName, field1, field2, field3];
- 
- //NSString *sqlStr = [NSString stringWithFormat:  @"UPDATE '%@' SET 0 ='@'+1 WHERE '@' = ?  ", tableName,totUpField,searchField];
- 
- const char *sql = [sqlStr UTF8String];
- sqlite3_stmt *statement;
- 
- if (sqlite3_prepare_v2(db, sql, -1, &statement, nil) == SQLITE_OK) {
- sqlite3_bind_text(statement, 1, [searchField UTF8String], -1, NULL);
- sqlite3_bind_int(statement, 2, totUpField);
- // not sure  could be error here  - syntax guessed !
- }
- 
- if (sqlite3_step(statement) != SQLITE_DONE)
- NSAssert(0, @" what !! - Error updating table. --  error no. = %d " ,sqlite3_step(statement));
- 
- 
- sqlite3_finalize(statement);
- 
- }
- */
 
 
 

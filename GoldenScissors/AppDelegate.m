@@ -77,6 +77,9 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);    
     NSString *documentsDir = [paths lastObject];
     
+    
+    NSLog(@"filePath = %@",paths);
+    
   
     return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
 }

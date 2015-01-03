@@ -140,6 +140,7 @@
 				2349E0B91A47919B00F33631 /* secondView.m */,
 				2349E0BA1A47919B00F33631 /* secondView.xib */,
 				23EFC5691A3F40F1003667D0 /* Images.xcassets */,
+				23EFC55F1A3F40F1003667D0 /* GoldenScissors-Info.plist */,
 				23EFC55E1A3F40F1003667D0 /* Supporting Files */,
 			);
 			name = GoldenBastard;
@@ -149,7 +150,6 @@
 		23EFC55E1A3F40F1003667D0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				23EFC55F1A3F40F1003667D0 /* GoldenScissors-Info.plist */,
 				23EFC5601A3F40F1003667D0 /* InfoPlist.strings */,
 				23EFC5631A3F40F1003667D0 /* main.m */,
 				23EFC5651A3F40F1003667D0 /* GoldenScissors-Prefix.pch */,
