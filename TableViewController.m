@@ -9,6 +9,8 @@
 #import "TableViewController.h"
 #import "ViewController.h"
 #import "secondView.h"
+#import "searchNameView.h"
+#import "testView.h"
 
 @interface TableViewController ()
 
@@ -21,7 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arrItems = [[NSArray alloc] initWithObjects:@"Add new persons card",@"Remove a card",@"Search a card", nil];
+    arrItems = [[NSArray alloc] initWithObjects:@"Add new customer's card",@"Add point to card",@"Search a card by customer code",@"Search a card by customer name", nil];
     
 }
 
@@ -72,14 +74,24 @@
     
     }
     
-    
-    else
+    else if(indexPath.row == 1)
     {
         secondView *detailViewController_2 = [[secondView alloc] initWithNibName:@"secondView" bundle:nil];
         [self.navigationController pushViewController:detailViewController_2 animated:YES];
     }
     
+    else if(indexPath.row == 2)
+    {
+        searchNameView *detailViewController_3 = [[searchNameView alloc] initWithNibName:@"searchNameView" bundle:nil];
+        [self.navigationController pushViewController:detailViewController_3 animated:YES];
+    }
     
+    else
+    {
+        testView *detailViewController_4 = [[testView alloc] initWithNibName:@"testView" bundle:nil];
+        [self.navigationController pushViewController:detailViewController_4 animated:YES];
+
+    }
 
 }
 

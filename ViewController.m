@@ -33,10 +33,6 @@
     if(result != SQLITE_OK)
         NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
     
-    /*
-    //create a table for this database
-    [self createTableNamed: @"LoyaltyCounter" withField1: @"code" withField2: @"customerName" withField3: 1];
-    */
 }
 
 
@@ -68,16 +64,7 @@
                            andField2:@"customerName" field2Value: nameField
                            andField3:@"num" field3Value:0];
     
-    
-    NSLog(@"DONE nserting into table");
-    
-    /*
-    alertMsg = [[UIAlertView alloc] initWithTitle:full_course_name
-                
-                                          message: extraStuff_14
-                                         delegate:nil cancelButtonTitle:@"OK I get it ! :)"
-                                otherButtonTitles:nil];
-    */
+
     
     [alertMsg show];
 }

@@ -32,10 +32,8 @@
     if(result != SQLITE_OK)
         NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
     
-    NSLog(@"creating table");
     //create a table for this database
     [self createTableNamed: @"CustomerCard" withField1: @"code" withField2: @"customerName" withField3: @"num"];
-    NSLog(@"DONE creating table");
      
     return YES;
 }
