@@ -23,7 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arrItems = [[NSArray alloc] initWithObjects:@"Add new customer's card",@"Add point to card",@"Search a card by customer code",@"Search a card by customer name", nil];
+    arrItems = [[NSArray alloc] initWithObjects:@"Add new customer's card",@"Add point to card",@"Remove a card by customer code",@"Search a card by customer name", nil];
     
 }
 

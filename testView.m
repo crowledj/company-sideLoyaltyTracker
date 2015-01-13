@@ -61,26 +61,6 @@
     [self.view addSubview:countLabel];
     
     
-    /*
-    searchbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [searchbutton addTarget:self
-               action:@selector(namePressed:)
-     forControlEvents:UIControlEventTouchUpInside];
-    [searchbutton setTitle:@"Show View" forState:UIControlStateNormal];
-    searchbutton.frame = CGRectMake(50.0, 200.0, 100.0, 50.0);
-    [self.view addSubview:searchbutton];
-    
-    
-    
-    tf = [[UITextField alloc] initWithFrame:CGRectMake(80 ,150, 100, 70)];
-    tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    tf.backgroundColor=[UIColor whiteColor];
-    tf.text=@"Hello";
-    
-    self->tf.delegate = self;
-    */
-    
     /**** test parameters  ***/
     
     searchbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -145,22 +125,15 @@
     
     if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
         
-        NSLog(@"processing select statement correctly  :)-- SQL string = %@ ",insQL);
-        
         while(sqlite3_step(statement_1) == SQLITE_ROW) {
             
-            NSLog(@"going thru rows. ");
-            
-            NSLog(@"Read rows OK");
             NSString *dbMessageID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
             NSString *dbMessageText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
             int dbMessageDate = (int )sqlite3_column_int(statement_1, 2);
             
             NSString *dbCounterText = [self intToString:dbMessageDate];
+
             
-            NSLog(@"code = %@ -- name = %@ -- counter = %d",dbMessageID,dbMessageText,dbMessageDate);
-            
-            //(20, 250, 125, 35)
             UILabel  * label_1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 275, 125, 35)];
             label_1.backgroundColor = [UIColor clearColor];
             label_1.textAlignment = NSTextAlignmentLeft;
@@ -191,7 +164,6 @@
         }
     }
     
-    else NSLog(@"Something fucked up here  :( ");
     sqlite3_finalize(statement_1);
 }
 
@@ -253,14 +225,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

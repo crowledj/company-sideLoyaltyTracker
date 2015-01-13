@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2318CCC71A62B5280098A9FC /* APDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318CCC61A62B5280098A9FC /* APDocument.m */; };
+		2318CCCA1A62B5A70098A9FC /* APElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318CCC91A62B5A70098A9FC /* APElement.m */; };
+		2318CCCD1A62B5E80098A9FC /* APAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2318CCCC1A62B5E80098A9FC /* APAttribute.m */; };
 		2349E0BB1A47919B00F33631 /* secondView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2349E0B91A47919B00F33631 /* secondView.m */; };
 		2349E0BC1A47919B00F33631 /* secondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2349E0BA1A47919B00F33631 /* secondView.xib */; };
 		2361EA5F1A597C4E0060B49B /* testView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2361EA5D1A597C4E0060B49B /* testView.m */; };
+		23A573FD1A6321E10021759E /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A573FC1A6321E10021759E /* MyDocument.m */; };
 		23A58B6D1A48CE43002567FC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A58B6C1A48CE43002567FC /* libsqlite3.0.dylib */; };
+		23A7D2B41A5D84B1002CEF8E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A7D2B31A5D84B1002CEF8E /* CloudKit.framework */; };
 		23A9FE951A586C2B00E76335 /* searchNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A9FE931A586C2B00E76335 /* searchNameView.m */; };
 		23A9FE961A586C2B00E76335 /* searchNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A9FE941A586C2B00E76335 /* searchNameView.xib */; };
 		23C03E3A1A3F9B3B00A54855 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C03E381A3F9B3B00A54855 /* ViewController.m */; };
@@ -42,13 +47,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2318CCC51A62B4CA0098A9FC /* APDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APDocument.h; path = ../APDocument.h; sourceTree = "<group>"; };
+		2318CCC61A62B5280098A9FC /* APDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APDocument.m; path = ../APDocument.m; sourceTree = "<group>"; };
+		2318CCC81A62B56A0098A9FC /* APElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APElement.h; path = ../APElement.h; sourceTree = "<group>"; };
+		2318CCC91A62B5A70098A9FC /* APElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APElement.m; path = ../APElement.m; sourceTree = "<group>"; };
+		2318CCCB1A62B5CD0098A9FC /* APAttribute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APAttribute.h; path = ../APAttribute.h; sourceTree = "<group>"; };
+		2318CCCC1A62B5E80098A9FC /* APAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APAttribute.m; path = ../APAttribute.m; sourceTree = "<group>"; };
+		2318CCCE1A62B88A0098A9FC /* APXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = APXML.h; path = ../APXML.h; sourceTree = "<group>"; };
 		2349E0B81A47919B00F33631 /* secondView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = secondView.h; path = ../secondView.h; sourceTree = "<group>"; };
 		2349E0B91A47919B00F33631 /* secondView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = secondView.m; path = ../secondView.m; sourceTree = "<group>"; };
 		2349E0BA1A47919B00F33631 /* secondView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = secondView.xib; path = ../secondView.xib; sourceTree = "<group>"; };
 		2361EA5C1A597C4E0060B49B /* testView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testView.h; path = ../testView.h; sourceTree = "<group>"; };
 		2361EA5D1A597C4E0060B49B /* testView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testView.m; path = ../testView.m; sourceTree = "<group>"; };
+		23A573FB1A6321720021759E /* MyDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyDocument.h; path = ../MyDocument.h; sourceTree = "<group>"; };
+		23A573FC1A6321E10021759E /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyDocument.m; path = ../MyDocument.m; sourceTree = "<group>"; };
 		23A58B681A48BF87002567FC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		23A58B6C1A48CE43002567FC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		23A7D2B21A5D8463002CEF8E /* GoldenScissors.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = GoldenScissors.entitlements; path = GoldenScissors/GoldenScissors.entitlements; sourceTree = "<group>"; };
+		23A7D2B31A5D84B1002CEF8E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		23A9FE921A586C2B00E76335 /* searchNameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = searchNameView.h; path = ../searchNameView.h; sourceTree = "<group>"; };
 		23A9FE931A586C2B00E76335 /* searchNameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = searchNameView.m; path = ../searchNameView.m; sourceTree = "<group>"; };
 		23A9FE941A586C2B00E76335 /* searchNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = searchNameView.xib; path = ../searchNameView.xib; sourceTree = "<group>"; };
@@ -81,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23A7D2B41A5D84B1002CEF8E /* CloudKit.framework in Frameworks */,
 				23A58B6D1A48CE43002567FC /* libsqlite3.0.dylib in Frameworks */,
 				23EFC55A1A3F40F1003667D0 /* CoreGraphics.framework in Frameworks */,
 				23EFC55C1A3F40F1003667D0 /* UIKit.framework in Frameworks */,
@@ -104,6 +121,7 @@
 		23EFC54B1A3F40F1003667D0 = {
 			isa = PBXGroup;
 			children = (
+				23A7D2B21A5D8463002CEF8E /* GoldenScissors.entitlements */,
 				23EFC55D1A3F40F1003667D0 /* GoldenBastard */,
 				23EFC5761A3F40F1003667D0 /* GoldenScissorsTests */,
 				23EFC5561A3F40F1003667D0 /* Frameworks */,
@@ -123,6 +141,7 @@
 		23EFC5561A3F40F1003667D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				23A7D2B31A5D84B1002CEF8E /* CloudKit.framework */,
 				23A58B6C1A48CE43002567FC /* libsqlite3.0.dylib */,
 				23A58B681A48BF87002567FC /* libsqlite3.dylib */,
 				23EFC5571A3F40F1003667D0 /* Foundation.framework */,
@@ -136,6 +155,15 @@
 		23EFC55D1A3F40F1003667D0 /* GoldenBastard */ = {
 			isa = PBXGroup;
 			children = (
+				2318CCCE1A62B88A0098A9FC /* APXML.h */,
+				23A573FB1A6321720021759E /* MyDocument.h */,
+				23A573FC1A6321E10021759E /* MyDocument.m */,
+				2318CCCB1A62B5CD0098A9FC /* APAttribute.h */,
+				2318CCCC1A62B5E80098A9FC /* APAttribute.m */,
+				2318CCC81A62B56A0098A9FC /* APElement.h */,
+				2318CCC91A62B5A70098A9FC /* APElement.m */,
+				2318CCC51A62B4CA0098A9FC /* APDocument.h */,
+				2318CCC61A62B5280098A9FC /* APDocument.m */,
 				23EFC5661A3F40F1003667D0 /* AppDelegate.h */,
 				23EFC5671A3F40F1003667D0 /* AppDelegate.m */,
 				23EFC5861A3F4110003667D0 /* TableViewController.h */,
@@ -235,6 +263,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = EventHorizon;
 				TargetAttributes = {
+					23EFC5531A3F40F1003667D0 = {
+						DevelopmentTeam = 6325EG346L;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
 					23EFC56E1A3F40F1003667D0 = {
 						TestTargetID = 23EFC5531A3F40F1003667D0;
 					};
@@ -288,12 +324,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				23EFC5681A3F40F1003667D0 /* AppDelegate.m in Sources */,
+				2318CCCA1A62B5A70098A9FC /* APElement.m in Sources */,
 				23EFC5891A3F4110003667D0 /* TableViewController.m in Sources */,
 				23C03E3A1A3F9B3B00A54855 /* ViewController.m in Sources */,
+				23A573FD1A6321E10021759E /* MyDocument.m in Sources */,
 				2361EA5F1A597C4E0060B49B /* testView.m in Sources */,
 				2349E0BB1A47919B00F33631 /* secondView.m in Sources */,
 				23EFC5641A3F40F1003667D0 /* main.m in Sources */,
 				23A9FE951A586C2B00E76335 /* searchNameView.m in Sources */,
+				2318CCC71A62B5280098A9FC /* APDocument.m in Sources */,
+				2318CCCD1A62B5E80098A9FC /* APAttribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +450,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = GoldenScissors/GoldenScissors.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
 				INFOPLIST_FILE = "GoldenScissors/GoldenScissors-Info.plist";
@@ -418,6 +461,7 @@
 					"$(PROJECT_DIR)/GoldenScissors",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -427,6 +471,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = GoldenScissors/GoldenScissors.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GoldenScissors/GoldenScissors-Prefix.pch";
 				INFOPLIST_FILE = "GoldenScissors/GoldenScissors-Info.plist";
@@ -435,6 +482,7 @@
 					"$(PROJECT_DIR)/GoldenScissors",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

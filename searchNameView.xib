@@ -7,9 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="searchNameView">
             <connections>
-                <outlet property="searchBox" destination="9xK-FQ-YZL" id="Cr9-iN-x70"/>
-                <outlet property="searchButton" destination="aYd-K6-O7M" id="Txy-uG-44a"/>
-                <outlet property="search_label" destination="cXZ-qK-Ezn" id="3rX-OF-daM"/>
+                <outlet property="removeBox" destination="9xK-FQ-YZL" id="Pqc-xw-9Zj"/>
+                <outlet property="remove_label" destination="cXZ-qK-Ezn" id="pvC-9t-oVs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="u51-XM-rbh"/>
             </connections>
         </placeholder>
@@ -18,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xK-FQ-YZL">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Card Code" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xK-FQ-YZL">
                     <rect key="frame" x="106" y="194" width="97" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -35,7 +34,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="namePressed:" destination="-1" eventType="touchUpInside" id="HA0-hX-zbu"/>
+                        <action selector="namePressed:" destination="-1" eventType="touchUpInside" id="xhJ-Qg-gvP"/>
                     </connections>
                 </button>
             </subviews>

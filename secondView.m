@@ -162,7 +162,7 @@
  withSearchField: (NSString *) searchField
  {
      
-     sqlite3_stmt *statement,*statement_1;
+     sqlite3_stmt *statement;
      
      NSString *insertSQL = [NSString stringWithFormat:
                             @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,tableName,
@@ -196,7 +196,7 @@
 /*andTotUpField: (int) totUpField*/
 {
     
-    sqlite3_stmt *statement,*statement_1;
+    sqlite3_stmt *statement;
     
     NSString *insertSQL = [NSString stringWithFormat:
                            @"UPDATE \"%@\" SET num=0 WHERE code =  \"%@\"" ,tableName,

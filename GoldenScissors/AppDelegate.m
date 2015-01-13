@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "TableViewController.h"
+#import "APXML.h"
+#import "MyDocument.h"
 
 @implementation AppDelegate
 @synthesize navController,vController;
@@ -48,6 +50,10 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+     NSLog(@"**** in entering background app. function ****");
+    [self backupToXMLonCloud];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -63,6 +69,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    NSLog(@"**** in terminating app. function ****");
+    
+    
 }
 
 
@@ -112,5 +122,133 @@
 }
 
 
+- (void)loadData:(NSMetadataQuery *)queryData
+{
+    
+    
+    for (NSMetadataItem *item in [queryData results])
+    {
+        NSString *filename = [item valueForAttribute:NSMetadataItemDisplayNameKey];
+        NSNumber *filesize = [item valueForAttribute:NSMetadataItemFSSizeKey];
+        NSDate *updated = [item valueForAttribute:NSMetadataItemFSContentChangeDateKey];
+        NSLog(@"%@ (%@ bytes, updated %@) ", filename, filesize, updated);
+        
+        NSURL *url = [item valueForAttribute:NSMetadataItemURLKey];
+        MyDocument *doc = [[MyDocument alloc] initWithFileURL:url];
+        if([filename isEqualToString:@"Properties"])
+        {
+            [doc openWithCompletionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"XML: Success to open from iCloud");
+                    NSData *file = [NSData dataWithContentsOfURL:url];
+                    //NSString *xmlFile = [[NSString alloc] initWithData:file encoding:NSASCIIStringEncoding];
+                    //NSLog(@"%@",xmlFile);
+                    
+                    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:file];
+                    [parser setDelegate:self];
+                    [parser parse];
+                    //We hold here until the parser finishes execution
+                  
+                }
+                else
+                {
+                    NSLog(@"XML: failed to open from iCloud");
+                }
+            }]; 
+        }
+    }
+}
 
+
+
+-(void) backupToXMLonCloud
+{
+    // create the document with it’s root element
+    APDocument *doc = [[APDocument alloc] initWithRootElement:[APElement elementWithName:@"CustomerCard"]];
+    APElement *rootElement = [doc rootElement]; // retrieves same element we created the line above
+    
+    NSMutableArray *addrList = [[NSMutableArray alloc] init];
+    NSString *select_query;
+    const char *select_stmt;
+    sqlite3_stmt *compiled_stmt;
+    if (sqlite3_open([[self filePath] UTF8String], &db) == SQLITE_OK)
+    {
+        select_query = [NSString stringWithFormat:@"SELECT * FROM CustomerCard"];
+        select_stmt = [select_query UTF8String];
+        if(sqlite3_prepare_v2(db, select_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK)
+        {
+            while(sqlite3_step(compiled_stmt) == SQLITE_ROW)
+            {
+                NSString *addr = [NSString stringWithFormat:@"%@",[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt,0)]];
+                addr = [NSString stringWithFormat:@"%@#%@",addr,[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt,1)]];
+                addr = [NSString stringWithFormat:@"%@#%@",addr,[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt,2)]];
+                
+                NSLog(@" mutable array frm select * = ->%@<-",addr);
+                [addrList addObject:addr];
+            }
+            sqlite3_finalize(compiled_stmt);
+        }
+        else
+        {
+            NSLog(@"Error while creating detail view statement. '%s'", sqlite3_errmsg(db));
+        }
+        
+    }
+    
+    for(int i =0 ; i < [addrList count]; i++)
+    {
+        NSArray *addr = [[NSArray alloc] initWithArray:[[addrList objectAtIndex:i] componentsSeparatedByString:@"#"]];
+        
+        APElement *property = [APElement elementWithName:@"Customers"];
+        [property addAttributeNamed:@"id" withValue:[addr objectAtIndex:0]];
+        [property addAttributeNamed:@"name" withValue:[addr objectAtIndex:1]];
+        [property addAttributeNamed:@"counter" withValue:[addr objectAtIndex:2]];
+
+        [rootElement addChild:property];
+        
+    
+    }
+    sqlite3_close(db);
+    
+    
+    NSString *prettyXML = [doc prettyXML];
+    NSLog(@"\n\nstring is ->%@<- ",prettyXML);
+    
+    
+    //***** PARSE XML FILE *****
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Customers.xml" ];
+    
+    NSLog(@"got to 'dataWithBytes' thingy ");
+    
+    NSData *file = [NSData dataWithBytes:[prettyXML UTF8String] length:strlen([prettyXML UTF8String])];
+  
+    NSLog(@"got PAST 'dataWithBytes' thingy ");
+    
+    [file writeToFile:path atomically:YES];
+    
+    
+    NSString *fileName = [NSString stringWithFormat:@"Customers.xml "];
+    NSURL *ubiq = [[NSFileManager defaultManager]URLForUbiquityContainerIdentifier:nil];
+    NSURL *ubiquitousPackage = [[ubiq URLByAppendingPathComponent:@"Documents"]  URLByAppendingPathComponent:fileName];
+    
+    
+    MyDocument *mydoc = [[MyDocument alloc] initWithFileURL:ubiquitousPackage];
+    mydoc.xmlContent = prettyXML;
+    [mydoc saveToURL:[mydoc fileURL]forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success)
+     {
+         
+         if (success)
+         {
+             NSLog(@"XML: Synced with icloud");
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iCloud Syncing" message:@"Successfully synced with iCloud." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [alert show];
+         }
+         else
+             NSLog(@"XML: Syncing FAILED with icloud");
+         
+         
+     }];
+    
+}
 @end
