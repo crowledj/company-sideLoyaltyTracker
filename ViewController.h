@@ -11,18 +11,14 @@
 
 @interface ViewController : UIViewController  <UITextFieldDelegate>
 {
-    //IBOutlet UILabel *Title;
-    
-    
     IBOutlet UIButton *course_1;
     IBOutlet UILabel *lable_text;
     IBOutlet UITextField *codeField;
     IBOutlet UILabel *userName;
     IBOutlet UITextField *nameInput;
+    IBOutlet UIButton *didPressLink;
     
-    
-    
-     int count;
+    int count;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField;

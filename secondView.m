@@ -54,13 +54,10 @@
     
     UIAlertView *alertMsg=nil;
     
-    sqlite3_stmt /**statement,*/*statement_1;
-    
-    
+    sqlite3_stmt *statement_1;
+        
     [self totUpRecordInTableNamed:tableName withSearchField:searchField];
-    
- 
-    
+
     //***************************     TEST    **************************************
     
     NSString *insQL = [NSString stringWithFormat:
@@ -87,10 +84,7 @@
     //***************************   END  TEST    ***************************************
 
     NSString *countString=nil;
-    
-    NSLog(@"count = %d ",count);
-    
-    
+   
     if(count == 0){
         countString= @"0";
         [self alert:alertMsg PopupWith:countString];
@@ -168,9 +162,6 @@
                             @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,tableName,
                             searchField];
      
-     
-     NSLog(@"insertSQL = %@",insertSQL);
-     
      const char *insert_stmt = [insertSQL UTF8String];
      
      if(sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL) != SQLITE_OK)
@@ -202,9 +193,6 @@
                            @"UPDATE \"%@\" SET num=0 WHERE code =  \"%@\"" ,tableName,
                            searchField];
     
-    
-    NSLog(@"insertSQL = %@",insertSQL);
-    
     const char *insert_stmt = [insertSQL UTF8String];
     
     sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL);
@@ -218,8 +206,6 @@
     }
     
     sqlite3_finalize(statement);
-    
-    
 }
 
 

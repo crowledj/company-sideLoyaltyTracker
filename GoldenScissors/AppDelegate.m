@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "TableViewController.h"
-#import "APXML.h"
-#import "MyDocument.h"
+
+
 
 @implementation AppDelegate
 @synthesize navController,vController;
@@ -36,8 +36,32 @@
     
     //create a table for this database
     [self createTableNamed: @"CustomerCard" withField1: @"code" withField2: @"customerName" withField3: @"num"];
-     
+    
+    
+    //include dropbox functionality by first creating an acc. manager object.
+    DBAccountManager *accountManager =
+    [[DBAccountManager alloc] initWithAppKey:@"9x4p140n7dtp0fw" secret:@"mem8sz34kotof3m"];
+    [DBAccountManager setSharedManager:accountManager];
+    
+    DBAccount *account = [[DBAccountManager sharedManager] linkedAccount];
+    
+    if (account) {
+        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
+        [DBFilesystem setSharedFilesystem:filesystem];
+    }
+    
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+  sourceApplication:(NSString *)source annotation:(id)annotation {
+    DBAccount *account = [[DBAccountManager sharedManager] handleOpenURL:url];
+    if (account) {
+        NSLog(@"App linked successfully!");
+        return YES;
+    }
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -46,15 +70,138 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
+//Back up of original 'applicationDidEnterBackground:(UIApplication *)application' code
+/*
+ 
+ //NSLog(@"created file in dropbox");
+ 
+ 
+ //write to file in dropbox filesystem
+ 
+ //DBPath *newPath = [[DBPath root] childPath:@"NewFile.sql"];
+ //DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
+ //[file writeString:@"Hello World!" error:nil];
+ 
+ //[file writeContentsOfFile:[self filePath] shouldSteal:NO error:nil];
+ 
+
+//NSLog(@"wrote to file on dropbox");
+
+//NSString *dropboxFile=@"NewBackupFile.txt";
+
+//NSMutableString *dropboxFile=@"NewBackupFile.txt";
+
+NSString * string1 = @"NewBackupFile_";
+NSMutableString * string2 = [string1 mutableCopy];
+
+NSLog(@"in background app currDate = %@",currDate);
+
+//[dropboxFile stringByAppendingString:currDate];
+
+[string2 appendString:testString];
+[string2 appendString:@".txt"];
+
+NSLog(@"about to write to file on dropbox-- unique dropbox fileString is %@",string2);
+
+//test onpine code :
+
+
+
+//END test onpine code :
+
+DBPath *newPath_1 = [[DBPath root] childPath:string1];
+DBError *error = nil;
+DBError *error1= nil;
+DBFile *destFile = [[DBFilesystem sharedFilesystem] createFile:newPath_1 error:&error1];
+[self extractDataFromDB : @"CustomerCard"];
+
+if(destFile) {
+    NSData *fileData = [NSData dataWithContentsOfFile:[self filePathBackUp]];
+    if (![destFile writeData:fileData error:&error]) {
+        NSLog(@"Error when writing file %@ in Dropbox, error description: %@", newPath_1, error);
+    }
+    [destFile close];
+}  else {
+    NSLog(@"Error when creating file %@ in Dropbox, error description: %@", newPath_1, error1.description);
+}
+
+
+
+
+ if(newPath_1)
+ NSLog(@" :) in created initial file path in dropbox loop ! :)");
+ 
+ else
+ NSLog(@" NOT in created initial file path in dropbox loop ! :(");
+ */
+
+//temp remove as test for error string below.
+/*DBFile *file_1 = [[DBFilesystem sharedFilesystem] createFile:newPath_1 error:nil];*/
+
+//create and write to a local file
+
+///remove temporrily es test.
+//[self extractDataFromDB : @"CustomerCard"];
+
+
+//rempve as test this code-block :
+
+/*
+ BOOL writeResult;
+ //write the contents of this file
+ 
+ if( !([[DBFilesystem sharedFilesystem] createFile:newPath_1 error:&error]) ){
+ 
+ NSLog(@" NOT in writing to file on dropbox loop ?! :(");
+ NSLog(@"Error when writing filein Dropbox, error description: %@", error);
+ 
+ }
+ 
+ else{
+ 
+ NSLog(@" :) in writing to file on dropbox loop ! :)");
+ //writeResult=[file_1 writeContentsOfFile:[self filePathBackUp] shouldSteal:NO error:nil];
+ 
+ }
+ 
+ NSLog(@"past backing up DB to file ! and 'writeContentsOfFile' = %s",writeResult ? "true" : "false");
+
+ */
+
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-     NSLog(@"**** in entering background app. function ****");
-    [self backupToXMLonCloud];
+    // create unique date to append onto Dropbox file
+    //(this functionality needs to be modularized later !)
     
-}
+    NSString *basicDBoxFileName=@"debugNewFile";
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
+    
+    NSString *currentDate=[DateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"In 'applicationDidEnterBackground' method -- currDate = %@",currentDate);
+    
+    NSString *uniqueDropboxFileName=[basicDBoxFileName stringByAppendingString:currentDate];
+    uniqueDropboxFileName=[uniqueDropboxFileName stringByAppendingString:@".txt"];
+    NSLog(@"** UNIQUE DROPBOX FILENAME ** = %@",uniqueDropboxFileName);
+    
+    //write to file in dropbox filesystem
+    DBPath *newPath = [[DBPath root] childPath:uniqueDropboxFileName];
+    DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
+    //[file writeString:@"Hello World!" error:nil];
+    
+    NSLog(@"created file in dropbox");
+    
+    [self extractDataFromDB : @"CustomerCard"];
+    
+    [file writeContentsOfFile:[self filePathBackUp] shouldSteal:NO error:nil];
+    
+    NSLog(@"wrote to file on dropbox");
+    
+  }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
@@ -69,9 +216,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    
-    NSLog(@"**** in terminating app. function ****");
-    
     
 }
 
@@ -92,6 +236,32 @@
     return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
 }
 
+
+-(NSString *) filePathBackUp
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *documentsDir = [paths lastObject];
+    
+    NSString *storageFile=@"backUp";
+    
+    NSLog(@"at date attempt ! ");
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
+
+    currDate=[DateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"currDate = %@",currDate);
+    
+    storageFile=[storageFile stringByAppendingString:currDate];
+    storageFile=[storageFile stringByAppendingString:@".txt"];
+    
+    
+    NSLog(@"back up filePath = %@",paths);
+    NSLog(@"and file name located here is = ->%@<-",storageFile);
+    
+    
+    return[documentsDir stringByAppendingPathComponent:storageFile];
+}
 
 
 //function to open the database
@@ -121,134 +291,45 @@
     
 }
 
-
-- (void)loadData:(NSMetadataQuery *)queryData
+-(void) extractDataFromDB : (NSString *) tableName
 {
+//***************************     TEST    **************************************
+
+    NSString *insQL = [NSString stringWithFormat:
+                   @"select * from \"%@\" ",tableName];
+    sqlite3_stmt *statement_1;
+    const char *stmt = [insQL UTF8String];
+    //char *errMsg = 0;
+
+//if(sqlite3_exec(db, stmt, NULL, NULL,&zErrMsg)
+
+    //if(sqlite3_exec(db, stmt,NULL, NULL,&errMsg) == SQLITE_OK) {
+    if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
     
-    
-    for (NSMetadataItem *item in [queryData results])
-    {
-        NSString *filename = [item valueForAttribute:NSMetadataItemDisplayNameKey];
-        NSNumber *filesize = [item valueForAttribute:NSMetadataItemFSSizeKey];
-        NSDate *updated = [item valueForAttribute:NSMetadataItemFSContentChangeDateKey];
-        NSLog(@"%@ (%@ bytes, updated %@) ", filename, filesize, updated);
-        
-        NSURL *url = [item valueForAttribute:NSMetadataItemURLKey];
-        MyDocument *doc = [[MyDocument alloc] initWithFileURL:url];
-        if([filename isEqualToString:@"Properties"])
-        {
-            [doc openWithCompletionHandler:^(BOOL success) {
-                if (success) {
-                    NSLog(@"XML: Success to open from iCloud");
-                    NSData *file = [NSData dataWithContentsOfURL:url];
-                    //NSString *xmlFile = [[NSString alloc] initWithData:file encoding:NSASCIIStringEncoding];
-                    //NSLog(@"%@",xmlFile);
-                    
-                    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:file];
-                    [parser setDelegate:self];
-                    [parser parse];
-                    //We hold here until the parser finishes execution
-                  
-                }
-                else
-                {
-                    NSLog(@"XML: failed to open from iCloud");
-                }
-            }]; 
+        while(sqlite3_step(statement_1) == SQLITE_ROW) {
+            
+            NSString *dbcodeID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
+            NSString *dbNameText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
+            int count= (int )sqlite3_column_int(statement_1, 2);
+            
+            
+           // fprintf([[self filePathBackUp] UTF8String], "w+");
+            const char *codeString = [dbcodeID UTF8String];
+            const char *nameString = [dbNameText UTF8String];
+            
+            NSLog(@"in extract BD method : codeString = %s -- nameString= %s",codeString,nameString);
+            
+            
+            fp = fopen ([[self filePathBackUp] UTF8String], "a");
+            fprintf(fp, "%s %s %d \n", codeString,nameString,count);
+            
+            fclose(fp);
+            
         }
     }
+
+    sqlite3_finalize(statement_1);
+    
 }
 
-
-
--(void) backupToXMLonCloud
-{
-    // create the document with it’s root element
-    APDocument *doc = [[APDocument alloc] initWithRootElement:[APElement elementWithName:@"CustomerCard"]];
-    APElement *rootElement = [doc rootElement]; // retrieves same element we created the line above
-    
-    NSMutableArray *addrList = [[NSMutableArray alloc] init];
-    NSString *select_query;
-    const char *select_stmt;
-    sqlite3_stmt *compiled_stmt;
-    if (sqlite3_open([[self filePath] UTF8String], &db) == SQLITE_OK)
-    {
-        select_query = [NSString stringWithFormat:@"SELECT * FROM CustomerCard"];
-        select_stmt = [select_query UTF8String];
-        if(sqlite3_prepare_v2(db, select_stmt, -1, &compiled_stmt, NULL) == SQLITE_OK)
-        {
-            while(sqlite3_step(compiled_stmt) == SQLITE_ROW)
-            {
-                NSString *addr = [NSString stringWithFormat:@"%@",[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt,0)]];
-                addr = [NSString stringWithFormat:@"%@#%@",addr,[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt,1)]];
-                addr = [NSString stringWithFormat:@"%@#%@",addr,[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiled_stmt,2)]];
-                
-                NSLog(@" mutable array frm select * = ->%@<-",addr);
-                [addrList addObject:addr];
-            }
-            sqlite3_finalize(compiled_stmt);
-        }
-        else
-        {
-            NSLog(@"Error while creating detail view statement. '%s'", sqlite3_errmsg(db));
-        }
-        
-    }
-    
-    for(int i =0 ; i < [addrList count]; i++)
-    {
-        NSArray *addr = [[NSArray alloc] initWithArray:[[addrList objectAtIndex:i] componentsSeparatedByString:@"#"]];
-        
-        APElement *property = [APElement elementWithName:@"Customers"];
-        [property addAttributeNamed:@"id" withValue:[addr objectAtIndex:0]];
-        [property addAttributeNamed:@"name" withValue:[addr objectAtIndex:1]];
-        [property addAttributeNamed:@"counter" withValue:[addr objectAtIndex:2]];
-
-        [rootElement addChild:property];
-        
-    
-    }
-    sqlite3_close(db);
-    
-    
-    NSString *prettyXML = [doc prettyXML];
-    NSLog(@"\n\nstring is ->%@<- ",prettyXML);
-    
-    
-    //***** PARSE XML FILE *****
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Customers.xml" ];
-    
-    NSLog(@"got to 'dataWithBytes' thingy ");
-    
-    NSData *file = [NSData dataWithBytes:[prettyXML UTF8String] length:strlen([prettyXML UTF8String])];
-  
-    NSLog(@"got PAST 'dataWithBytes' thingy ");
-    
-    [file writeToFile:path atomically:YES];
-    
-    
-    NSString *fileName = [NSString stringWithFormat:@"Customers.xml "];
-    NSURL *ubiq = [[NSFileManager defaultManager]URLForUbiquityContainerIdentifier:nil];
-    NSURL *ubiquitousPackage = [[ubiq URLByAppendingPathComponent:@"Documents"]  URLByAppendingPathComponent:fileName];
-    
-    
-    MyDocument *mydoc = [[MyDocument alloc] initWithFileURL:ubiquitousPackage];
-    mydoc.xmlContent = prettyXML;
-    [mydoc saveToURL:[mydoc fileURL]forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success)
-     {
-         
-         if (success)
-         {
-             NSLog(@"XML: Synced with icloud");
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iCloud Syncing" message:@"Successfully synced with iCloud." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-             [alert show];
-         }
-         else
-             NSLog(@"XML: Syncing FAILED with icloud");
-         
-         
-     }];
-    
-}
 @end

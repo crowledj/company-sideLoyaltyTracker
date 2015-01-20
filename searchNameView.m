@@ -69,18 +69,11 @@
          NSLog(@"processing select statement correctly  :)-- SQL string = %@ ",insQL);
     }
     
-    
-    
-    
     sqlite3_finalize(statement_1);
-    
     sqlite3_close(db);
     
     //***************************   END  TEST    ***************************************
-    
-
 }
-
 
 
 -(void) alert:(UIAlertView *) alert PopupWith: (NSString *) counter

@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
+#import <Dropbox/Dropbox.h>
 
 @class TableViewController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-        sqlite3 *db;
+    sqlite3 *db;
+    FILE *fp;
+    NSString *currDate;
+    NSString *testString;
 }
 
 @property (strong, nonatomic) UIWindow *window;

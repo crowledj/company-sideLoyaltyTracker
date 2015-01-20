@@ -11,10 +11,14 @@
 @interface testView ()
 {
     sqlite3 *db;
+    
 }
+
+
 @end
 
 @implementation testView
+
 
 - (void)viewDidLoad {
     
@@ -26,16 +30,33 @@
     self.view = contentView;
     
     
+    //define class postiiton variables.
+    leftLabel_x=20,leftLabel_y=250,leftLabel_width=125,leftLabel_height=35;
+    midLabel_x=120,midLabel_y=250,midLabel_width=125,midLabel_height=35;
+    rightLabel_x=240,rightLabel_y=250,rightLabel_width=125,rightLabel_height=35;
+    incremt=25;
+    
+    
+    int textFeild_x=100,textFeild_y=125,textFeild_width=150,textFeild_height=incremt;
+    int button_x=textFeild_x,button_y=textFeild_y+75,button_width=textFeild_width,button_height=textFeild_height+incremt;
+  
+    
     //add page label
-    UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(40, 70, 300, 50)];
+    UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(20, 70, 300, 50)];
     label.backgroundColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor=[UIColor blackColor];
-    label.text = @"Search Database by Customer";
+    label.text = @"Search Database by Customer Name :";
     [self.view addSubview:label];
     
+    /*
+    NSLog(@"************************************************************************************************");
+    NSLog(@"**** leftLabel_x = %d --  leftLabel_y = %d -- leftLabel_width = %d -- leftLabel_height = %d ***",leftLabel_x, leftLabel_y, leftLabel_width, leftLabel_height);
+    NSLog(@"************************************************************************************************");
+    */
+    
     //add labels for results :
-    UILabel  *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 125, 35)];
+    UILabel  *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftLabel_x, leftLabel_y, leftLabel_width, leftLabel_height)];
     codeLabel.backgroundColor = [UIColor clearColor];
     codeLabel.textAlignment = NSTextAlignmentLeft;
     codeLabel.textColor=[UIColor blackColor];
@@ -43,7 +64,7 @@
     [codeLabel setFont:[UIFont systemFontOfSize:14]];
     [self.view addSubview:codeLabel];
     
-    UILabel  *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 250, 125, 35)];
+    UILabel  *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(midLabel_x, midLabel_y, midLabel_width, midLabel_height)];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.textAlignment = NSTextAlignmentLeft;
     nameLabel.textColor=[UIColor blackColor];
@@ -52,7 +73,7 @@
     [self.view addSubview:nameLabel];
     
     
-    UILabel  *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 250, 125, 35)];
+    UILabel  *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(rightLabel_x,rightLabel_y,rightLabel_width, rightLabel_height)];
     countLabel.backgroundColor = [UIColor clearColor];
     countLabel.textAlignment = NSTextAlignmentLeft;
     countLabel.textColor=[UIColor blackColor];
@@ -67,13 +88,13 @@
     [searchbutton addTarget:self
                      action:@selector(namePressed:)
            forControlEvents:UIControlEventTouchUpInside];
-    [searchbutton setTitle:@"Show View" forState:UIControlStateNormal];
-    searchbutton.frame = CGRectMake(125.0, 200.0, 100.0, 50.0);
+    [searchbutton setTitle:@"Display Result(s) !" forState:UIControlStateNormal];
+    searchbutton.frame = CGRectMake(button_x, button_y, button_width, button_height);
     [self.view addSubview:searchbutton];
     
     
     
-    tf = [[UITextField alloc] initWithFrame:CGRectMake(125 ,125, 100, 25)];
+    tf = [[UITextField alloc] initWithFrame:CGRectMake(textFeild_x ,textFeild_y, textFeild_width, textFeild_height)];
     tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
     tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
     tf.backgroundColor=[UIColor whiteColor];
@@ -85,7 +106,7 @@
     tf.layer.cornerRadius = 5;
     tf.clipsToBounds = YES;
     
-    tf.text=@"Hello";
+    tf.text=@"Fill in name";
     
     self->tf.delegate = self;
     
@@ -105,36 +126,37 @@
 
 -(IBAction)namePressed:(UIButton *)sender
 {
-    //NSString *string=nil;
-    NSLog(@"Activated button function ! :) ");
-    
+
     NSString *searchField = tf.text;
     UIAlertView *alertMsg=nil;
     
     sqlite3_stmt *statement_1;
-    
-    NSLog(@"in button preseed func of new view ! :)");
-    
+
     //***************************     TEST    **************************************
     
     NSString *insQL = [NSString stringWithFormat:
                        @"select * from CustomerCard where customerName = \"%@\" ",searchField];
     
     const char *stmt = [insQL UTF8String];
+    int row_counter=0;//counter to handle duplicate customer names
     
     
     if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
         
         while(sqlite3_step(statement_1) == SQLITE_ROW) {
             
+            //increment row counter
+            row_counter++;
+            
             NSString *dbMessageID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
             NSString *dbMessageText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
             int dbMessageDate = (int )sqlite3_column_int(statement_1, 2);
             
             NSString *dbCounterText = [self intToString:dbMessageDate];
-
             
-            UILabel  * label_1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 275, 125, 35)];
+        
+            //UILabel  * label_1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 275, 125, 35)];
+            UILabel  * label_1 = [[UILabel alloc] initWithFrame:CGRectMake(leftLabel_x,leftLabel_y+(row_counter*incremt),leftLabel_width,leftLabel_height)];
             label_1.backgroundColor = [UIColor clearColor];
             label_1.textAlignment = NSTextAlignmentLeft;
             label_1.textColor=[UIColor blackColor];
@@ -143,7 +165,8 @@
             
             
             //(120, 250, 125, 35)
-            UILabel  * label_2 = [[UILabel alloc] initWithFrame:CGRectMake(120, 275,125, 35)];
+            //UILabel  * label_2 = [[UILabel alloc] initWithFrame:CGRectMake(120, 275,125, 35)];
+            UILabel  * label_2 = [[UILabel alloc] initWithFrame:CGRectMake(midLabel_x,midLabel_y+(row_counter*incremt),midLabel_width,midLabel_height)];
             label_2.backgroundColor = [UIColor clearColor];
             label_2.textAlignment = NSTextAlignmentLeft;
             label_2.textColor=[UIColor blackColor];
@@ -152,16 +175,18 @@
             
             
             //(240, 250, 125, 35)
-            UILabel  * label_3 = [[UILabel alloc] initWithFrame:CGRectMake(240, 275, 125, 35)];
+            //UILabel  * label_3 = [[UILabel alloc] initWithFrame:CGRectMake(240, 275, 125, 35)];
+            UILabel  * label_3 = [[UILabel alloc] initWithFrame:CGRectMake(rightLabel_x,rightLabel_y+(row_counter*incremt),rightLabel_width, rightLabel_height)];
             label_3.backgroundColor = [UIColor clearColor];
             label_3.textAlignment = NSTextAlignmentLeft;
             label_3.textColor=[UIColor blackColor];
             label_3.text = dbCounterText;
             [self.view addSubview:label_3];
             
-            
-            
         }
+        
+        //reset row counter
+        row_counter=0;
     }
     
     sqlite3_finalize(statement_1);

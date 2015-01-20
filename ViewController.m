@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-//#import "AppDelegate.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 {
@@ -26,6 +26,10 @@
     self->codeField.delegate = self;
     self->nameInput.delegate = self;
     
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage ];
+
+    self.view.tintColor = [UIColor redColor];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
     
     //open/create database
     int result = sqlite3_open([[self filePath] UTF8String],&db);
@@ -33,6 +37,7 @@
     if(result != SQLITE_OK)
         NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
     
+
 }
 
 
@@ -64,11 +69,14 @@
                            andField2:@"customerName" field2Value: nameField
                            andField3:@"num" field3Value:0];
     
-
-    
     [alertMsg show];
 }
 
+- (IBAction)didPressLink:(UIButton *)sender {
+    NSLog(@"in dropbox linker method !");
+    [[DBAccountManager sharedManager] linkFromController:self];
+    NSLog(@"executed in dropbox linker method !");
+}
 
 
 //function to insert rows of customer data into this table

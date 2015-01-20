@@ -23,8 +23,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    arrItems = [[NSArray alloc] initWithObjects:@"Add new customer's card",@"Add point to card",@"Remove a card by customer code",@"Search a card by customer name", nil];
     
+    
+    [[UIApplication sharedApplication] keyWindow].tintColor = [UIColor orangeColor];
+    
+    arrItems = [[NSArray alloc] initWithObjects:@"Add new customer's card",@"Add point to card",@"Remove a card by customer code",@"Search a card by customer name", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,10 +53,12 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -63,6 +68,7 @@
     
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
