@@ -26,8 +26,6 @@
     self->codeField.delegate = self;
     self->nameInput.delegate = self;
     
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage ];
-
     self.view.tintColor = [UIColor redColor];
     [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
     
@@ -36,8 +34,6 @@
     
     if(result != SQLITE_OK)
         NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
-    
-
 }
 
 

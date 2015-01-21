@@ -70,103 +70,6 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-//Back up of original 'applicationDidEnterBackground:(UIApplication *)application' code
-/*
- 
- //NSLog(@"created file in dropbox");
- 
- 
- //write to file in dropbox filesystem
- 
- //DBPath *newPath = [[DBPath root] childPath:@"NewFile.sql"];
- //DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
- //[file writeString:@"Hello World!" error:nil];
- 
- //[file writeContentsOfFile:[self filePath] shouldSteal:NO error:nil];
- 
-
-//NSLog(@"wrote to file on dropbox");
-
-//NSString *dropboxFile=@"NewBackupFile.txt";
-
-//NSMutableString *dropboxFile=@"NewBackupFile.txt";
-
-NSString * string1 = @"NewBackupFile_";
-NSMutableString * string2 = [string1 mutableCopy];
-
-NSLog(@"in background app currDate = %@",currDate);
-
-//[dropboxFile stringByAppendingString:currDate];
-
-[string2 appendString:testString];
-[string2 appendString:@".txt"];
-
-NSLog(@"about to write to file on dropbox-- unique dropbox fileString is %@",string2);
-
-//test onpine code :
-
-
-
-//END test onpine code :
-
-DBPath *newPath_1 = [[DBPath root] childPath:string1];
-DBError *error = nil;
-DBError *error1= nil;
-DBFile *destFile = [[DBFilesystem sharedFilesystem] createFile:newPath_1 error:&error1];
-[self extractDataFromDB : @"CustomerCard"];
-
-if(destFile) {
-    NSData *fileData = [NSData dataWithContentsOfFile:[self filePathBackUp]];
-    if (![destFile writeData:fileData error:&error]) {
-        NSLog(@"Error when writing file %@ in Dropbox, error description: %@", newPath_1, error);
-    }
-    [destFile close];
-}  else {
-    NSLog(@"Error when creating file %@ in Dropbox, error description: %@", newPath_1, error1.description);
-}
-
-
-
-
- if(newPath_1)
- NSLog(@" :) in created initial file path in dropbox loop ! :)");
- 
- else
- NSLog(@" NOT in created initial file path in dropbox loop ! :(");
- */
-
-//temp remove as test for error string below.
-/*DBFile *file_1 = [[DBFilesystem sharedFilesystem] createFile:newPath_1 error:nil];*/
-
-//create and write to a local file
-
-///remove temporrily es test.
-//[self extractDataFromDB : @"CustomerCard"];
-
-
-//rempve as test this code-block :
-
-/*
- BOOL writeResult;
- //write the contents of this file
- 
- if( !([[DBFilesystem sharedFilesystem] createFile:newPath_1 error:&error]) ){
- 
- NSLog(@" NOT in writing to file on dropbox loop ?! :(");
- NSLog(@"Error when writing filein Dropbox, error description: %@", error);
- 
- }
- 
- else{
- 
- NSLog(@" :) in writing to file on dropbox loop ! :)");
- //writeResult=[file_1 writeContentsOfFile:[self filePathBackUp] shouldSteal:NO error:nil];
- 
- }
- 
- NSLog(@"past backing up DB to file ! and 'writeContentsOfFile' = %s",writeResult ? "true" : "false");
-
- */
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
@@ -176,8 +79,10 @@ if(destFile) {
     // create unique date to append onto Dropbox file
     //(this functionality needs to be modularized later !)
     
-    NSString *basicDBoxFileName=@"debugNewFile";
+    NSString *uniqueDropboxFileName=@"debugNewFile";
+    DBError *error = nil;
     
+    /*
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
     
@@ -186,20 +91,30 @@ if(destFile) {
     
     NSString *uniqueDropboxFileName=[basicDBoxFileName stringByAppendingString:currentDate];
     uniqueDropboxFileName=[uniqueDropboxFileName stringByAppendingString:@".txt"];
+    */
+    
+    
+    /****  UNDO THIS LINE TO TRY SOLVE DROPBOX WRITE ERRORS !!! ***/
+    
+    uniqueDropboxFileName=[self createDateString:uniqueDropboxFileName];
+    
     NSLog(@"** UNIQUE DROPBOX FILENAME ** = %@",uniqueDropboxFileName);
     
     //write to file in dropbox filesystem
     DBPath *newPath = [[DBPath root] childPath:uniqueDropboxFileName];
     DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
-    //[file writeString:@"Hello World!" error:nil];
     
-    NSLog(@"created file in dropbox");
-    
+    if(!file)
+        NSLog(@"Error when creating file in Dropbox filesystem ,error description: %@", error);
+    else
+        NSLog(@"Success when creating file in Dropbox filesystem");
+        
     [self extractDataFromDB : @"CustomerCard"];
     
-    [file writeContentsOfFile:[self filePathBackUp] shouldSteal:NO error:nil];
-    
-    NSLog(@"wrote to file on dropbox");
+    if(![file writeContentsOfFile:[self filePathBackUp] shouldSteal:NO error:nil])
+        NSLog(@"Error when writing filein Dropbox, error description: %@", error);
+    else
+        NSLog(@"Successfully wrote to file %@ on dropbox", newPath);
     
   }
 
@@ -218,10 +133,6 @@ if(destFile) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
 }
-
-
-
-/***   DATABASE TEST  ***/
 
 
 -(NSString *) filePath;
@@ -246,6 +157,7 @@ if(destFile) {
     
     NSLog(@"at date attempt ! ");
     
+    /*
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
 
@@ -254,6 +166,13 @@ if(destFile) {
     
     storageFile=[storageFile stringByAppendingString:currDate];
     storageFile=[storageFile stringByAppendingString:@".txt"];
+    */
+    
+    //functional implementaion here instead
+    
+    /****  UNDO THIS LINE TO TRY SOLVE DROPBOX WRITE ERRORS !!! ***/
+    
+    storageFile=[self createDateString:storageFile];
     
     
     NSLog(@"back up filePath = %@",paths);
@@ -299,26 +218,19 @@ if(destFile) {
                    @"select * from \"%@\" ",tableName];
     sqlite3_stmt *statement_1;
     const char *stmt = [insQL UTF8String];
-    //char *errMsg = 0;
 
-//if(sqlite3_exec(db, stmt, NULL, NULL,&zErrMsg)
-
-    //if(sqlite3_exec(db, stmt,NULL, NULL,&errMsg) == SQLITE_OK) {
     if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
     
         while(sqlite3_step(statement_1) == SQLITE_ROW) {
             
             NSString *dbcodeID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
             NSString *dbNameText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
+            
             int count= (int )sqlite3_column_int(statement_1, 2);
-            
-            
-           // fprintf([[self filePathBackUp] UTF8String], "w+");
             const char *codeString = [dbcodeID UTF8String];
             const char *nameString = [dbNameText UTF8String];
             
-            NSLog(@"in extract BD method : codeString = %s -- nameString= %s",codeString,nameString);
-            
+            //NSLog(@"in extract BD method : codeString = %s -- nameString= %s",codeString,nameString);
             
             fp = fopen ([[self filePathBackUp] UTF8String], "a");
             fprintf(fp, "%s %s %d \n", codeString,nameString,count);
@@ -329,7 +241,27 @@ if(destFile) {
     }
 
     sqlite3_finalize(statement_1);
-    
 }
+
+-(NSString *) createDateString : (NSString *) inputString
+{
+    NSString *exp=nil;
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
+    
+    currDate=[DateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"currDate = %@",currDate);
+    
+    inputString=[inputString stringByAppendingString:currDate];
+    inputString=[inputString stringByAppendingString:@".txt"];
+    exp=inputString;
+    
+    return exp;
+}
+
+
+
+
 
 @end

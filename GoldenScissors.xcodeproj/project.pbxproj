@@ -53,6 +53,7 @@
 		2349E0BA1A47919B00F33631 /* secondView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = secondView.xib; path = ../secondView.xib; sourceTree = "<group>"; };
 		2361EA5C1A597C4E0060B49B /* testView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testView.h; path = ../testView.h; sourceTree = "<group>"; };
 		2361EA5D1A597C4E0060B49B /* testView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testView.m; path = ../testView.m; sourceTree = "<group>"; };
+		2383D1871A6EC56C00A99D18 /* projectLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = projectLogs.h; path = ../projectLogs.h; sourceTree = "<group>"; };
 		239C7B651A6566F100827EB0 /* Dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Dropbox.framework; sourceTree = "<group>"; };
 		239C7B671A65674900827EB0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		239C7B691A65675200827EB0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -178,6 +179,7 @@
 				23A9FE941A586C2B00E76335 /* searchNameView.xib */,
 				2361EA5C1A597C4E0060B49B /* testView.h */,
 				2361EA5D1A597C4E0060B49B /* testView.m */,
+				2383D1871A6EC56C00A99D18 /* projectLogs.h */,
 				23EFC5691A3F40F1003667D0 /* Images.xcassets */,
 				23EFC55F1A3F40F1003667D0 /* GoldenScissors-Info.plist */,
 				23EFC55E1A3F40F1003667D0 /* Supporting Files */,

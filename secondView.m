@@ -76,9 +76,6 @@
         }
     }
     
-    //else NSLog(@"Something fucked up here  :( ");
-    
-    
     sqlite3_finalize(statement_1);
  
     //***************************   END  TEST    ***************************************
@@ -128,9 +125,7 @@
     NSString *extraStuff_3=nil;
     extraStuff_3 = [extraStuff_2 stringByAppendingString:counter];
     
-    
     //display message for customer count no.
-    
     if(count < 5 )
         
         alert = [[UIAlertView alloc] initWithTitle:@"Customer card incremented"
@@ -155,9 +150,7 @@
  -(void) totUpRecordInTableNamed: (NSString *) tableName
  withSearchField: (NSString *) searchField
  {
-     
      sqlite3_stmt *statement;
-     
      NSString *insertSQL = [NSString stringWithFormat:
                             @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,tableName,
                             searchField];
@@ -176,15 +169,12 @@
      }
      
      sqlite3_finalize(statement);
-
- 
  }
 
 
 //function to insert rows of customer data into this table
 -(void) resetRecordInTableNamed: (NSString *) tableName
                 withSearchField: (NSString *) searchField
-/*andTotUpField: (int) totUpField*/
 {
     
     sqlite3_stmt *statement;
