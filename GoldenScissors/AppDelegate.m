@@ -6,10 +6,18 @@
 //  Copyright (c) 2014 EventHorizon. All rights reserved.
 //
 
+
+/*****   TO  DO  *****/
+
+//1) - Put in alerts in view for bad inputs/errors
+//2) - Pur in alerts for when actions/button preses complete successfully.
+
+
+
+/*****    DONE    *****/
+
 #import "AppDelegate.h"
 #import "TableViewController.h"
-
-
 
 @implementation AppDelegate
 @synthesize navController,vController;
@@ -27,7 +35,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    
     //open/create database
     int result = sqlite3_open([[self filePath] UTF8String],&db);
     
@@ -36,7 +43,6 @@
     
     //create a table for this database
     [self createTableNamed: @"CustomerCard" withField1: @"code" withField2: @"customerName" withField3: @"num"];
-    
     
     //include dropbox functionality by first creating an acc. manager object.
     DBAccountManager *accountManager =
@@ -49,7 +55,6 @@
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
         [DBFilesystem setSharedFilesystem:filesystem];
     }
-    
     
     return YES;
 }
@@ -81,21 +86,6 @@
     
     NSString *uniqueDropboxFileName=@"debugNewFile";
     DBError *error = nil;
-    
-    /*
-    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
-    
-    NSString *currentDate=[DateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"In 'applicationDidEnterBackground' method -- currDate = %@",currentDate);
-    
-    NSString *uniqueDropboxFileName=[basicDBoxFileName stringByAppendingString:currentDate];
-    uniqueDropboxFileName=[uniqueDropboxFileName stringByAppendingString:@".txt"];
-    */
-    
-    
-    /****  UNDO THIS LINE TO TRY SOLVE DROPBOX WRITE ERRORS !!! ***/
-    
     uniqueDropboxFileName=[self createDateString:uniqueDropboxFileName];
     
     NSLog(@"** UNIQUE DROPBOX FILENAME ** = %@",uniqueDropboxFileName);
@@ -131,7 +121,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    
 }
 
 
@@ -140,10 +129,8 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);    
     NSString *documentsDir = [paths lastObject];
     
-    
     NSLog(@"filePath = %@",paths);
     
-  
     return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
 }
 
@@ -152,32 +139,13 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *documentsDir = [paths lastObject];
-    
     NSString *storageFile=@"backUp";
-    
-    NSLog(@"at date attempt ! ");
-    
-    /*
-    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
 
-    currDate=[DateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"currDate = %@",currDate);
-    
-    storageFile=[storageFile stringByAppendingString:currDate];
-    storageFile=[storageFile stringByAppendingString:@".txt"];
-    */
-    
     //functional implementaion here instead
-    
-    /****  UNDO THIS LINE TO TRY SOLVE DROPBOX WRITE ERRORS !!! ***/
-    
     storageFile=[self createDateString:storageFile];
-    
     
     NSLog(@"back up filePath = %@",paths);
     NSLog(@"and file name located here is = ->%@<-",storageFile);
-    
     
     return[documentsDir stringByAppendingPathComponent:storageFile];
 }
@@ -212,10 +180,7 @@
 
 -(void) extractDataFromDB : (NSString *) tableName
 {
-//***************************     TEST    **************************************
-
-    NSString *insQL = [NSString stringWithFormat:
-                   @"select * from \"%@\" ",tableName];
+    NSString *insQL = [NSString stringWithFormat: @"select * from \"%@\" ",tableName];
     sqlite3_stmt *statement_1;
     const char *stmt = [insQL UTF8String];
 
@@ -234,12 +199,10 @@
             
             fp = fopen ([[self filePathBackUp] UTF8String], "a");
             fprintf(fp, "%s %s %d \n", codeString,nameString,count);
-            
             fclose(fp);
-            
         }
     }
-
+    
     sqlite3_finalize(statement_1);
 }
 
@@ -259,9 +222,6 @@
     
     return exp;
 }
-
-
-
 
 
 @end

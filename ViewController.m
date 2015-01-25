@@ -27,7 +27,9 @@
     self->nameInput.delegate = self;
     
     self.view.tintColor = [UIColor redColor];
+    self.title = @"Add New Customer";
     [[UINavigationBar appearance] setBackgroundColor:[UIColor yellowColor]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg"]];
     
     //open/create database
     int result = sqlite3_open([[self filePath] UTF8String],&db);
@@ -42,30 +44,24 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *documentsDir = [paths lastObject];
     
-    
     return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
 }
-
 
 
 
 -(IBAction)namePressed:(UIButton *)sender
 {
     NSString *name = (NSString *)(sender.currentTitle);
-    
-    
     NSString *nameField = nameInput.text;
     NSString *codeName = codeField.text;
     
- 
     UIAlertView *alertMsg=nil;
     
-
     [self insertRecordIntoTableNamed: @"CustomerCard" withField1:@"code" field1Value:codeName
                            andField2:@"customerName" field2Value: nameField
                            andField3:@"num" field3Value:0];
-    
-    [alertMsg show];
+    //[alertMsg show];
+    [self alert:alertMsg PopupWith:nameField];
 }
 
 - (IBAction)didPressLink:(UIButton *)sender {
@@ -97,10 +93,7 @@
 	if (sqlite3_step(statement) != SQLITE_DONE)
 		NSAssert(0, @" what !! - Error updating table.");
     
-   
-	
 	sqlite3_finalize(statement);
-	
 }
 
 
@@ -109,7 +102,18 @@
     return YES;
 }
 
+-(void) alert:(UIAlertView *) alert PopupWith: (NSString *) name
+{
+    NSString *extraStuff_2 = @"\n";
+    NSString *extraStuff_3=nil;
+    extraStuff_3 = [extraStuff_2 stringByAppendingString:name];
 
+    alert = [[UIAlertView alloc] initWithTitle:@"Customer added to database :"
+                                           message: extraStuff_3
+                                          delegate:nil cancelButtonTitle:@"OK I get it ! :)"
+                                 otherButtonTitles:nil];
+    [alert show];
+}
 
 - (void)didReceiveMemoryWarning
 {

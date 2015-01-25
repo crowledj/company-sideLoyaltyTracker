@@ -25,6 +25,8 @@
     self->codeBox.delegate = self;
     self->tableName= @"CustomerCard";
     
+    self.title = @"Add Point to card";
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg"]];
     
     //open/create database
     int result = sqlite3_open([[self filePath] UTF8String],&db);
@@ -45,8 +47,6 @@
 }
 
 
-
-
 -(IBAction)namePressed:(UIButton *)sender
 {
     NSString *name = (NSString *)(sender.currentTitle);
@@ -65,14 +65,10 @@
     
     const char *stmt = [insQL UTF8String];
     
-
     if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
         
-        
         while(sqlite3_step(statement_1) == SQLITE_ROW) {
-            
             count= (int )sqlite3_column_int(statement_1, 0);
-            
         }
     }
     
@@ -140,10 +136,7 @@
                                     otherButtonTitles:nil];
     
     [alert show];
-    
 }
-
-
 
 
  //function to insert rows of customer data into this table
@@ -157,16 +150,19 @@
      
      const char *insert_stmt = [insertSQL UTF8String];
      
-     if(sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL) != SQLITE_OK)
+     if(sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL) == SQLITE_OK){
          
-     
-     
-     if (sqlite3_step(statement) == SQLITE_DONE)
-     {
-         NSLog(@"Contact UPDATED");
-     } else {
-         NSLog(@"Failed to UPDATE contact");
+        if (sqlite3_step(statement) == SQLITE_DONE)
+        {
+            NSLog(@"Contact UPDATED");
+        } else {
+            NSLog(@"Failed to UPDATE contact");
+        }
+         
      }
+     
+     else
+         NSLog(@"Error when processing update sql staement");
      
      sqlite3_finalize(statement);
  }
@@ -178,15 +174,12 @@
 {
     
     sqlite3_stmt *statement;
-    
     NSString *insertSQL = [NSString stringWithFormat:
                            @"UPDATE \"%@\" SET num=0 WHERE code =  \"%@\"" ,tableName,
                            searchField];
-    
     const char *insert_stmt = [insertSQL UTF8String];
     
     sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL);
-    
     
     if (sqlite3_step(statement) == SQLITE_DONE)
     {

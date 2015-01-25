@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2322D0561A72787100E750CA /* Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2322D0551A72787100E750CA /* Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg */; };
+		232E98E51A72CEA0000B65A0 /* blueButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 232E98E41A72CEA0000B65A0 /* blueButton.jpg */; };
+		232E98E71A72D13B000B65A0 /* Yellow_Option-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 232E98E61A72D13B000B65A0 /* Yellow_Option-Button.png */; };
 		2349E0BB1A47919B00F33631 /* secondView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2349E0B91A47919B00F33631 /* secondView.m */; };
 		2349E0BC1A47919B00F33631 /* secondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2349E0BA1A47919B00F33631 /* secondView.xib */; };
 		2361EA5F1A597C4E0060B49B /* testView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2361EA5D1A597C4E0060B49B /* testView.m */; };
@@ -48,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2322D0551A72787100E750CA /* Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg"; path = "../../../Downloads/Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg"; sourceTree = "<group>"; };
+		232E98E41A72CEA0000B65A0 /* blueButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blueButton.jpg; path = ../../../Downloads/blueButton.jpg; sourceTree = "<group>"; };
+		232E98E61A72D13B000B65A0 /* Yellow_Option-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Yellow_Option-Button.png"; path = "../../../Downloads/Yellow_Option-Button.png"; sourceTree = "<group>"; };
 		2349E0B81A47919B00F33631 /* secondView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = secondView.h; path = ../secondView.h; sourceTree = "<group>"; };
 		2349E0B91A47919B00F33631 /* secondView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = secondView.m; path = ../secondView.m; sourceTree = "<group>"; };
 		2349E0BA1A47919B00F33631 /* secondView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = secondView.xib; path = ../secondView.xib; sourceTree = "<group>"; };
@@ -191,9 +197,12 @@
 		23EFC55E1A3F40F1003667D0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				232E98E61A72D13B000B65A0 /* Yellow_Option-Button.png */,
 				23EFC5601A3F40F1003667D0 /* InfoPlist.strings */,
 				23EFC5631A3F40F1003667D0 /* main.m */,
 				23EFC5651A3F40F1003667D0 /* GoldenScissors-Prefix.pch */,
+				2322D0551A72787100E750CA /* Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg */,
+				232E98E41A72CEA0000B65A0 /* blueButton.jpg */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -304,7 +313,10 @@
 				2349E0BC1A47919B00F33631 /* secondView.xib in Resources */,
 				23EFC5621A3F40F1003667D0 /* InfoPlist.strings in Resources */,
 				23C03E3B1A3F9B3B00A54855 /* ViewController.xib in Resources */,
+				232E98E71A72D13B000B65A0 /* Yellow_Option-Button.png in Resources */,
+				2322D0561A72787100E750CA /* Fiber-Carbon-Tiled-Pattern-background-vol.11.jpg in Resources */,
 				23EFC56A1A3F40F1003667D0 /* Images.xcassets in Resources */,
+				232E98E51A72CEA0000B65A0 /* blueButton.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

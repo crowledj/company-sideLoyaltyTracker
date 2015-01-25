@@ -25,5 +25,6 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField;
+-(void)setTitle:(NSString *)title;
 
 @end
