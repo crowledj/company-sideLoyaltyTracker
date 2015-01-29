@@ -12,7 +12,6 @@
     sqlite3 *db;
 }
 
-
 @end
 
 @implementation testView
@@ -23,15 +22,14 @@
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     //contentView.backgroundColor = [UIColor whiteColor];
     self.view = contentView;
-    //self.title = @"Search Customer by name";
-    [self setTitle:@"Search Customer by name"];
+    self.title = @"Search Customer by name";
+    //[self setTitle:@"Search Customer by name"];
     
     //define class postiiton variables.
     leftLabel_x=20,leftLabel_y=250,leftLabel_width=125,leftLabel_height=35;
     midLabel_x=120,midLabel_y=250,midLabel_width=125,midLabel_height=35;
     rightLabel_x=240,rightLabel_y=250,rightLabel_width=125,rightLabel_height=35;
     incremt=25;
-    
     
     int textFeild_x=100,textFeild_y=125,textFeild_width=150,textFeild_height=incremt;
     int button_x=textFeild_x,button_y=textFeild_y+75,button_width=textFeild_width,button_height=textFeild_height+incremt;
@@ -80,10 +78,9 @@
            forControlEvents:UIControlEventTouchUpInside];
     [searchbutton setTitle:@"Display Result(s) !" forState:UIControlStateNormal];
     searchbutton.frame = CGRectMake(button_x, button_y, button_width, button_height);
-    searchbutton.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"Yellow_Option-Button.png"]];
+    searchbutton.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"Yellow_Option-Button_small.png"]];
     [self.view addSubview:searchbutton];
 
-    
     tf = [[UITextField alloc] initWithFrame:CGRectMake(textFeild_x ,textFeild_y, textFeild_width, textFeild_height)];
     tf.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
     tf.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
@@ -116,7 +113,7 @@
     UIAlertView *alertMsg=nil;
     sqlite3_stmt *statement_1;
     //DBError *errorMsg=nil;
-
+    
     //***************************     TEST    **************************************
     
     NSString *insQL = [NSString stringWithFormat:
@@ -127,51 +124,76 @@
     
     if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK) {
         
-        NSLog(@"at v. start of main sql 'prepare' loop");
+        //DECLARE STRING TO STORE USERS NAME (NEEDED HERE FOR ERROR POP-UP MSG)
+        NSString *dbMessageText=nil;
         
-        while(sqlite3_step(statement_1) == SQLITE_ROW) {
-            //increment row counter
+        while (1){
             
-            NSLog(@"at v. start of sql while loop");
+            int rc = sqlite3_step(statement_1);
             
-            row_counter++;
+            NSLog(@"about to go into while(1) -- rc = %d",rc);
             
-            NSString *dbMessageID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
-            NSString *dbMessageText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
-            int dbMessageDate = (int )sqlite3_column_int(statement_1, 2);
+            if(rc == SQLITE_ROW){
+                
+                NSLog(@"at v. start of sql while loop IN SUCCESSFUL SQL_LITE_ROW");
+                
+                row_counter++;
+                
+                NSString *dbMessageID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 0)];
+                dbMessageText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement_1, 1)];
+                int dbMessageDate = (int )sqlite3_column_int(statement_1, 2);
+                
+                NSLog(@"in while sql loop -- dbMessageID = %@ -- dbMessageText = %@ --  dbMessageDate = %d",dbMessageID,dbMessageText,dbMessageDate);
+                
+                NSString *dbCounterText = [self intToString:dbMessageDate];
+                
+                UILabel  * label_1 = [[UILabel alloc] initWithFrame:CGRectMake(leftLabel_x,leftLabel_y+(row_counter*incremt),leftLabel_width,leftLabel_height)];
+                label_1.backgroundColor = [UIColor clearColor];
+                label_1.textAlignment = NSTextAlignmentLeft;
+                label_1.textColor=[UIColor redColor];
+                label_1.text = dbMessageID;
+                [self.view addSubview:label_1];
+                
+                UILabel  * label_2 = [[UILabel alloc] initWithFrame:CGRectMake(midLabel_x,midLabel_y+(row_counter*incremt),midLabel_width,midLabel_height)];
+                label_2.backgroundColor = [UIColor clearColor];
+                label_2.textAlignment = NSTextAlignmentLeft;
+                label_2.textColor=[UIColor redColor];
+                label_2.text = dbMessageText;
+                [self.view addSubview:label_2];
+                
+                UILabel  * label_3 = [[UILabel alloc] initWithFrame:CGRectMake(rightLabel_x,rightLabel_y+(row_counter*incremt),rightLabel_width, rightLabel_height)];
+                label_3.backgroundColor = [UIColor clearColor];
+                label_3.textAlignment = NSTextAlignmentLeft;
+                label_3.textColor=[UIColor redColor];
+                label_3.text = dbCounterText;
+                [self.view addSubview:label_3];
+            }
             
-            NSLog(@"in while sql loop -- dbMessageID = %@ -- dbMessageText = %@ --  dbMessageDate = %d",dbMessageID,dbMessageText,dbMessageDate);
+            //handle case where no rows return
+            else if (rc != SQLITE_ROW && row_counter == 0)
+            {
+                NSLog(@"SQL _step statement finished returning no rows");
+                [self alert:alertMsg PopupWith:/*dbMessageText*/searchField];
+                break;
+            }
             
-            NSString *dbCounterText = [self intToString:dbMessageDate];
+            //default case : finished executing all rows for a successful reult.
+            else
+            {
+                NSLog(@"SQL _step statement finished returning > 0 rows");
+                break;
+            }
             
-            UILabel  * label_1 = [[UILabel alloc] initWithFrame:CGRectMake(leftLabel_x,leftLabel_y+(row_counter*incremt),leftLabel_width,leftLabel_height)];
-            label_1.backgroundColor = [UIColor clearColor];
-            label_1.textAlignment = NSTextAlignmentLeft;
-            label_1.textColor=[UIColor redColor];
-            label_1.text = dbMessageID;
-            [self.view addSubview:label_1];
-            
-            UILabel  * label_2 = [[UILabel alloc] initWithFrame:CGRectMake(midLabel_x,midLabel_y+(row_counter*incremt),midLabel_width,midLabel_height)];
-            label_2.backgroundColor = [UIColor clearColor];
-            label_2.textAlignment = NSTextAlignmentLeft;
-            label_2.textColor=[UIColor redColor];
-            label_2.text = dbMessageText;
-            [self.view addSubview:label_2];
-            
-            UILabel  * label_3 = [[UILabel alloc] initWithFrame:CGRectMake(rightLabel_x,rightLabel_y+(row_counter*incremt),rightLabel_width, rightLabel_height)];
-            label_3.backgroundColor = [UIColor clearColor];
-            label_3.textAlignment = NSTextAlignmentLeft;
-            label_3.textColor=[UIColor redColor];
-            label_3.text = dbCounterText;
-            [self.view addSubview:label_3];
-        }
+        }//end infinite while
         
-        //reset row counter
-        row_counter=0;
-    }
+    }//end if checking for rows
     
     else
+    {
+        //reset row counter
+        row_counter=0;
         NSLog(@"Error in prcessing sql query -- errmsg = ->%s<-",sqlite3_errmsg(db));
+    }
     
     sqlite3_finalize(statement_1);
 }
@@ -232,6 +254,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 - (void)setTitle:(NSString *)title
 {
     [super setTitle:title];
@@ -250,6 +273,25 @@
     titleView.text = title;
     [titleView sizeToFit];
 }
+*/
 
+
+-(void) alert:(UIAlertView *) alert PopupWith: (NSString *) name
+{
+    NSLog(@"in alert method  !");
+    
+    NSString *extraStuff_2 = @"\n";
+    NSString *extraStuff_3=nil;
+    
+    if(name==nil)
+        name = @"-><-";
+    extraStuff_3 = [extraStuff_2 stringByAppendingString:name];
+    
+    alert = [[UIAlertView alloc] initWithTitle:@"User does not exist in database :"
+                                       message: extraStuff_3
+                                      delegate:nil cancelButtonTitle:@"Please re-try! ( its case sensitive:) )"
+                             otherButtonTitles:nil];
+    [alert show];
+}
 
 @end

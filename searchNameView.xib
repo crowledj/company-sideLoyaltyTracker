@@ -51,6 +51,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Yellow_Option-Button.png" width="2069" height="998"/>
+        <image name="Yellow_Option-Button.png" width="150" height="50"/>
     </resources>
 </document>

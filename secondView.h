@@ -19,7 +19,6 @@
     NSString *tableName;
 }
 
-
 -(BOOL)textFieldShouldReturn:(UITextField *)textField;
 
 @end
