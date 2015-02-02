@@ -96,7 +96,6 @@
     {
         testView *detailViewController_4 = [[testView alloc] initWithNibName:@"testView" bundle:nil];
         [self.navigationController pushViewController:detailViewController_4 animated:YES];
-
     }
 
 }

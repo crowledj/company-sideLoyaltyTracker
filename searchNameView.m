@@ -60,30 +60,21 @@
     {
         if(sqlite3_prepare_v2(db, stmt, -1, &statement_1, NULL) == SQLITE_OK)
         {
-            int ansBind=sqlite3_bind_text(statement_1, 1, [removeField UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(statement_1, 1, [removeField UTF8String], -1, SQLITE_TRANSIENT);
         
             int resCode=sqlite3_step(statement_1);
-            
-            NSLog(@"about to go rc WITHOUT bind statement used  and  -- rc = %d -- & bind result = %d",resCode,ansBind);
             
             if( resCode == SQLITE_DONE )
             {
                 NSLog(@"OK while Deleting");
-                row_count++;
                 [self alert:alertMsg PopupWith:removeField];
-            }
-            
-            else if(  resCode!= SQLITE_DONE && row_count == 0 )
-            {
-                NSLog(@"ERROR while Deleting -- customer code potentially does not exist !! :( ");
-                [self errorAlert:alertMsg PopupWith:removeField];
             }
             
             else
             {
                 NSLog(@"Failed to delete row in outer step loop -- errmsg = ->%s<- -- but row no. is non -zero! ? ", sqlite3_errmsg(db));
-                NSString *errorMsg=@"ERROR - but row no. is non -zero! ?";
-                [self errorAlert:alertMsg PopupWith:errorMsg];
+                //NSString *errorMsg=@"ERROR - but row no. is non -zero! ?";
+                //[self errorAlert:alertMsg PopupWith:errorMsg];
             }
             
         }
@@ -171,23 +162,9 @@
     {
         if(sqlite3_prepare_v2(db, stmt, -1, &state_1, NULL) == SQLITE_OK)
         {
-        //if(sqlite3_exec(db, stmt, NULL, NULL,&zErrMsg) == SQLITE_OK)
-        //{
-            //NSLog(@"exectuted SELECT statement successfully --- code = %@!",userCode);
-            //int ansBind=sqlite3_bind_text(state_1, 1, [userCode UTF8String], -1, SQLITE_TRANSIENT);
-            //if(!ansBind){
-            
             while (1){
                 
-                //int rc = sqlite3_step(statement_1);
-                
-                //NSLog(@"about to go into while(1) -- rc = %d",rc);
-                
                 if( sqlite3_step(state_1) == SQLITE_ROW){
-                    
-                    NSLog(@"*** IN SELECT ALL -- IE ENTRY *HAS* ROWS ! ***");
-                    
-                    //row_counter++;
                     
                     NSString *dbMessageID = [NSString stringWithUTF8String:(char *)sqlite3_column_text(state_1, 0)];
                     NSString *dbMessageText = [NSString stringWithUTF8String:(char *)sqlite3_column_text(state_1, 1)];
@@ -196,15 +173,13 @@
                     success=YES;
                 }//end sql row - step loop
                 
-                else{
-                    
+                else
+                {
                     NSLog(@" *** IN ELSE OF STEP IN SELECT ALL -- IE ENTRY HAS NO ROWS ! *** ");
                     break;
                 }
                 
             }//end while
-            
-            //}
         }
     }
     

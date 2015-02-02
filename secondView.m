@@ -16,8 +16,6 @@
 
 @implementation secondView
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,7 +31,6 @@
     
     if(result != SQLITE_OK)
         NSLog(@"Error : database not opened or created in %@ ",[self filePath]);
-    
 }
 
 
@@ -41,7 +38,6 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *documentsDir = [paths lastObject];
-    
     
     return[documentsDir stringByAppendingPathComponent:@"NewLoyaltyCard.sql"];
 }
@@ -139,47 +135,46 @@
 }
 
 
- //function to insert rows of customer data into this table
- -(void) totUpRecordInTableNamed: (NSString *) tableName
- withSearchField: (NSString *) searchField
- {
-     sqlite3_stmt *statement;
-     NSString *insertSQL = [NSString stringWithFormat:
-                            @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,tableName,
-                            searchField];
-     
-     const char *insert_stmt = [insertSQL UTF8String];
-     
-     if(sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL) == SQLITE_OK){
-         
+//function to insert rows of customer data into this table
+-(void) totUpRecordInTableNamed: (NSString *) tableName
+                withSearchField: (NSString *) searchField
+{
+    sqlite3_stmt *statement;
+    NSString *insertSQL = [NSString stringWithFormat:
+                           @"UPDATE \"%@\" SET num=num+1 WHERE code =  \"%@\" " ,tableName,
+                           searchField];
+    
+    const char *insert_stmt = [insertSQL UTF8String];
+    
+    if(sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL) == SQLITE_OK){
+        
         if (sqlite3_step(statement) == SQLITE_DONE)
         {
             NSLog(@"Contact UPDATED");
         } else {
             NSLog(@"Failed to UPDATE contact");
         }
-         
-     }
-     
-     else
-         NSLog(@"Error when processing update sql staement");
-     
-     sqlite3_finalize(statement);
- }
+        
+    }
+    
+    else
+        NSLog(@"Error when processing update sql staement");
+    
+    sqlite3_finalize(statement);
+}
 
 
 //function to insert rows of customer data into this table
 -(void) resetRecordInTableNamed: (NSString *) tableName
                 withSearchField: (NSString *) searchField
 {
-    
     sqlite3_stmt *statement;
     NSString *insertSQL = [NSString stringWithFormat:
                            @"UPDATE \"%@\" SET num=0 WHERE code =  \"%@\"" ,tableName,
                            searchField];
     const char *insert_stmt = [insertSQL UTF8String];
-    
     sqlite3_prepare_v2(db, insert_stmt, -1, &statement, NULL);
+    
     
     if (sqlite3_step(statement) == SQLITE_DONE)
     {
@@ -187,6 +182,7 @@
     } else {
         NSLog(@"Failed to UPDATE contact");
     }
+    
     
     sqlite3_finalize(statement);
 }

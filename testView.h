@@ -20,6 +20,8 @@
     int midLabel_x,midLabel_y,midLabel_width,midLabel_height;
     int rightLabel_x,rightLabel_y,rightLabel_width,rightLabel_height;
     int incremt;
+    
+    int btn_counter;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField;
