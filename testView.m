@@ -17,26 +17,17 @@
 @implementation testView
 
 - (void)viewDidLoad {
-    
-    NSLog(@"at start of new viewdidLoad method");
-    
+   
     //reset btn_press counter
-    btn_counter=0;
+    //btn_counter=0;
     
     CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
     UIView *contentView = [[UIView alloc] initWithFrame:applicationFrame];
     //contentView.backgroundColor = [UIColor whiteColor];
-    
-    NSLog(@"setting content view in viewdidLoad method");
 
     self.view = contentView;
-    
-    NSLog(@"DONE setting content view in viewdidLoad method");
-
     self.title = @"Search Customer by name";
     //[self setTitle:@"Search Customer by name"];
-    
-    NSLog(@"added frame and content view in viewdidLoad method");
     
     //define class postiiton variables.
     leftLabel_x=20,leftLabel_y=250,leftLabel_width=125,leftLabel_height=35;
@@ -54,10 +45,7 @@
     label.textColor=[UIColor yellowColor];
     label.text = @"Search Database by Customer Name :";
     [self.view addSubview:label];
-    
-    NSLog(@"added text label to view in viewdidLoad method");
-    
-    
+   
     //add labels for results :
     UILabel  *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftLabel_x, leftLabel_y, leftLabel_width, leftLabel_height)];
     codeLabel.backgroundColor = [UIColor clearColor];
@@ -66,8 +54,6 @@
     codeLabel.text = @"Unique Code :";
     [codeLabel setFont:[UIFont systemFontOfSize:14]];
     [self.view addSubview:codeLabel];
-    
-    NSLog(@"added code label to view in viewdidLoad method");
     
     UILabel  *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(midLabel_x, midLabel_y, midLabel_width, midLabel_height)];
     nameLabel.backgroundColor = [UIColor clearColor];
@@ -205,7 +191,6 @@
             
         }//end infinite while
         
-        
     }//end if checking for rows
     
     else
@@ -295,7 +280,6 @@
     [titleView sizeToFit];
 }
 */
-
 
 -(void) alert:(UIAlertView *) alert PopupWith: (NSString *) name
 {

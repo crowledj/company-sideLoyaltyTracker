@@ -21,7 +21,7 @@
     int rightLabel_x,rightLabel_y,rightLabel_width,rightLabel_height;
     int incremt;
     
-    int btn_counter;
+    //int btn_counter;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField;
